@@ -1,0 +1,72 @@
+// @use "mixins";
+// @use "variables";
+
+body {
+  &.rtl {
+    font-family: 'Rubik', 'Poppins', 'Cairo', sans-serif;
+
+    * {
+      direction: rtl;
+      --ion-font-family: 'Rubik', 'Poppins', 'Cairo', sans-serif;
+      --ion-default-font: 'Rubik', 'Poppins', 'Cairo', sans-serif;
+    }
+
+    .absolute-start {
+      position: absolute;
+
+      right: 0;
+      left: unset;
+    }
+
+    .absolute-end {
+      position: absolute;
+
+      right: unset;
+      left: 0;
+    }
+
+    .image-scale {
+      transform: scaleX(-1) !important;
+    }
+
+    .flipped-image-scale {
+      transform: scaleX(1) !important;
+    }
+
+    /*tabs bg effect*/
+
+    ion-tabs.tab1 ion-tab-bar:before {
+      transform: translate3d(40vw, 0, 0) !important;
+      border-radius: 2vw 0 0 0 !important;
+    }
+
+    ion-tabs.tab2 ion-tab-bar:before {
+      transform: translate3d(20vw, 0, 0) !important;
+    }
+
+    ion-tabs.tab3 ion-tab-bar:before {
+      transform: translate3d(0, 0, 0) !important;
+    }
+
+    ion-tabs.tab4 ion-tab-bar:before {
+      transform: translate3d(-20vw, 0, 0) !important;
+    }
+
+    ion-tabs.tab5 ion-tab-bar:before {
+      transform: translate3d(-40vw, 0, 0) !important;
+      border-radius: 0 2vw 0 0 !important;
+    }
+
+    .round-selector-section {
+      .arrow-icon {
+        &.next-arrow-icon {
+          transform: scaleX(-1) !important;
+        }
+
+        &.back-arrow-icon {
+          transform: scaleX(1) !important;
+        }
+      }
+    }
+  }
+}

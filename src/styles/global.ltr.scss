@@ -1,0 +1,44 @@
+@import "../../../node_modules/@ionic/angular/css/core.css";
+@import "../../../node_modules/@ionic/angular/css/normalize.css";
+@import "../../../node_modules/@ionic/angular/css/structure.css";
+@import "../../../node_modules/@ionic/angular/css/typography.css";
+
+@import "../../../node_modules/@ionic/angular/css/padding.css";
+@import "../../../node_modules/@ionic/angular/css/float-elements.css";
+@import "../../../node_modules/@ionic/angular/css/text-alignment.css";
+@import "../../../node_modules/@ionic/angular/css/text-transformation.css";
+@import "../../../node_modules/@ionic/angular/css/flex-utils.css";
+@import "ltr/direction-ltr";
+
+* {
+    direction: ltr;
+    --ion-font-family: "Rubik", "Poppins", sans-serif;
+    --ion-default-font: "Rubik", "Poppins", sans-serif;
+}
+
+body {
+    font-family: "Rubik", "Poppins", sans-serif;
+}
+
+.absolute-start {
+    position: absolute;
+
+    right: unset;
+    left: 0;
+}
+
+.absolute-end {
+    position: absolute;
+
+    right: 0;
+    left: unset;
+}
+
+.image-scale {
+    transform: scaleX(1) !important;
+}
+
+.flipped-image-scale {
+    transform: scaleX(-1) !important;
+}
+
