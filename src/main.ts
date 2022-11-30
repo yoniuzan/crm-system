@@ -1,7 +1,12 @@
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { CustomPreloadingService } from './app/services/common/custom-preloading.service';
+import { AppComponent } from './app/app.component';
+import { bootstrapApplication } from '@angular/platform-browser';
+import { provideRouter, withPreloading } from '@angular/router';
+import { routes } from './app/routes';
 
-import { AppModule } from './app/app.module';
+bootstrapApplication(AppComponent, {
+    providers: [
+        provideRouter(routes, withPreloading(CustomPreloadingService))
+    ]
+})
 
-
-platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.error(err));
