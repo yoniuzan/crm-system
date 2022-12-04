@@ -27,7 +27,7 @@ export class Dictionary<Tvalue> {
         return null;
     }
 
-    public getOrDefault(key: string | number, defaultValue: Tvalue): Tvalue | null {
+    public getOrDefault(key: string | number, defaultValue: Tvalue): Tvalue {
         const v = this.getOrNull(key);
 
         return v != null ? v : defaultValue;
@@ -50,8 +50,6 @@ export class Dictionary<Tvalue> {
 
     public filter(filter: (k: string | number, v: Tvalue) => boolean): Dictionary<Tvalue> {
         const keys = this.keys().filter(x => filter(x, this.get(x)));
-
-        // new dict
         const dict = new Dictionary<Tvalue>();
 
         for (let i = 0; i < keys.length; i++) {
@@ -88,7 +86,6 @@ export class Dictionary<Tvalue> {
     }
 
     public getSortedKeys(sort: (key1: string | number, value1: Tvalue, key2: string | number, value2: Tvalue) => number): Array<string | number> {
-
         let arr = this.asKeyValueArray();
         arr = arr.sort((i1, i2) => sort(i1.Key, i1.Value, i2.Key, i2.Value));
 

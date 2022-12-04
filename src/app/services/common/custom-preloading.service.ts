@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Route } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { CustomPreloading } from '../../constants/customPreloading';
+import { CustomPreloading } from '../../crm-common/constants/customPreloading';
 
 declare const navigator: any; // getting navigator object from the browser
 

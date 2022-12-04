@@ -3,6 +3,11 @@ import { AppComponent } from './app/app.component';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideRouter, withPreloading } from '@angular/router';
 import { routes } from './app/routes';
+import './app/utils/global';
+import './app/utils/extensions/string-extension';
+import './app/utils/extensions/date-extension';
+import './app/utils/extensions/array-extension';
+import './app/utils/extensions/promise-extension';
 
 bootstrapApplication(AppComponent, {
     providers: [
