@@ -3,6 +3,10 @@ export class Constants {
     public static Cookies = {
         Language: 'lang',
         SessionToken: 'session-token',
+        AppParams: {
+            AppData: 'app-data',
+            Country: 'country',
+        }
     };
 
     public static Routes = {

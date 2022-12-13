@@ -1,3 +1,4 @@
+import { HttpService } from './http.service';
 import { Inject, Injectable } from '@angular/core';
 import { Enums } from '../../crm-common/enums';
 import { LangEn } from '../../crm-common/constants/languages/en/lang-en';
@@ -23,9 +24,10 @@ export class LanguageService {
         ExtraSmall: 'xsm.css'
     };
     private _isRtl: boolean;
-    private _lang: Enums.Language = Enums.Language.English;
+    private _lang: Enums.Language = Enums.Language.Hebrew;
+    private _country: string | undefined;
 
-    constructor(private _storageService: StorageService, @Inject(DOCUMENT) private document: Document) {
+    constructor(private _storageService: StorageService, @Inject(DOCUMENT) private document: Document, private _httpService: HttpService) {
         this._languagesSizes[Enums.Language.Hebrew] = { Size: this._sizes.Medium, Locale: 'he-he' };
         this._languagesSizes[Enums.Language.English] = { Size: this._sizes.Medium, Locale: 'en-en' };
         // set everything towards translations
@@ -48,8 +50,11 @@ export class LanguageService {
     }
 
     public getLang(): Enums.Language {
-        if (this._lang)
-            return this._lang;
+        debugger;
+        console.log("getLang");        
+        
+        // if (this._lang)
+        //     return this._lang;
 
         // current lang not set, try get from cookies
         const lang = this._storageService.get(Constants.Cookies.Language);
@@ -76,7 +81,9 @@ export class LanguageService {
 
     // noinspection JSMethodCanBeStatic
     private getDefaultLang(): Enums.Language {
-        return Enums.Language.English;
+        console.log('getDefaultLang');
+        
+        return Enums.Language.Hebrew;
     }
 
     private setLangFromLocal(lang: Enums.Language): void {
@@ -131,6 +138,8 @@ export class LanguageService {
     // }
 
     public async setLang(lang: Enums.Language, version?: string, initial?: boolean): Promise<boolean> {
+        console.log("setLang:");
+        console.log(lang);
         if (lang == this._lang)
             return Promise.resolve(false);
 
@@ -165,8 +174,13 @@ export class LanguageService {
     }
 
     private setDirectionCss(): void {
+        console.log('setDirectionCss');
+        
         const currentLang = this.getLang();
-
+        
+        console.log("currentLang");
+        console.log(currentLang);
+        
         const rtlLangs = [Enums.Language.Hebrew];
         if (rtlLangs.indexOf(currentLang) >= 0) {
             this.loadStyle('global-rtl.css');
