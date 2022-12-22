@@ -1,1 +1,14 @@
-<p>{{'Login.SignIn' | translate}}</p>
+<div>
+    <!-- <h1>Routing and lazy loading</h1>
+    <ul>
+        <li> <a [routerLink]="['home']">Home</a></li>
+        <li> <a [routerLink]="['dashboard']">Dashboard</a></li>
+        <li> <a [routerLink]="['users']">Users</a></li>
+    </ul>
+    <router-outlet></router-outlet> -->
+    <p>{{'Login.SignIn' | translate}}</p>
+
+    <select (change)="onChaneLang($event)" [(ngModel)]="_currentLanguage">
+        <option *ngFor="let lang of _activeLanguages" [value]="lang">{{lang | language}}</option> 
+    </select>
+</div>

@@ -15,49 +15,23 @@ export class LanguageService {
 
     private _source: any;
     private _langs: Array<Enums.Language>;
-    private _languagesSizes: { [lang: number]: { Locale: string, Size: string } } = {};
-    private _countryToLang: Dictionary<Enums.Language>;
-    private readonly _sizes = {
-        None: '',
-        Small: 'sm.css',
-        Medium: 'md.css',
-        ExtraSmall: 'xsm.css'
-    };
+
     private _isRtl: boolean;
-    private _lang: Enums.Language = Enums.Language.Hebrew;
-    private _country: string | undefined;
+    private _lang: Enums.Language | undefined;
 
     constructor(private _storageService: StorageService, @Inject(DOCUMENT) private document: Document, private _httpService: HttpService) {
-        this._languagesSizes[Enums.Language.Hebrew] = { Size: this._sizes.Medium, Locale: 'he-he' };
-        this._languagesSizes[Enums.Language.English] = { Size: this._sizes.Medium, Locale: 'en-en' };
         // set everything towards translations
         this._isRtl = false;
         this._langs = [Enums.Language.English, Enums.Language.Hebrew];
-        this._countryToLang = new Dictionary({ 'Israel': Enums.Language.Hebrew });
-        this.setLangFromLocal(this.getLang());
-
-    }
-
-    public get Locale(): string {
-        return this._languagesSizes[this._lang].Locale;
-    }
-
-    public langBlackList(blackList: Array<number>): void {
-        blackList.forEach(lang => {
-            this._langs.deleteFirst((x: Enums.Language) => x === lang);
-        });
-
+        this.setLang(this.getLang(), true);
     }
 
     public getLang(): Enums.Language {
-        debugger;
-        console.log("getLang");        
-        
-        // if (this._lang)
-        //     return this._lang;
+        if (this._lang)
+            return this._lang;
 
         // current lang not set, try get from cookies
-        const lang = this._storageService.get(Constants.Cookies.Language);
+        let lang = this._storageService.get(Constants.Cookies.Language);
         if (lang != null)
             return parseInt(lang);
 
@@ -65,24 +39,12 @@ export class LanguageService {
         return this.getDefaultLang();
     }
 
-    public async loadDefaultLang(): Promise<void> {
-        const lang = this.getLang();
-        await this.setLang(lang, Date.now().toString(), true);
-    }
-
     public getActiveLangs(): Array<Enums.Language> {
-
-        // Arabic WiteList        
-        // if (!Constants.WhiteList.LangWhiteList[9].contains(this._session.UserId))
-        //     return this._langs.filter(lang => lang != Enums.Language.Arabic);
-
         return this._langs;
     }
 
     // noinspection JSMethodCanBeStatic
     private getDefaultLang(): Enums.Language {
-        console.log('getDefaultLang');
-        
         return Enums.Language.Hebrew;
     }
 
@@ -92,59 +54,27 @@ export class LanguageService {
 
     private getLocalSource(lang: Enums.Language): any {
         switch (lang) {
-            case Enums.Language.Hebrew:
-                return LangHe;
             case Enums.Language.English:
                 return LangEn;
+            case Enums.Language.Hebrew:
             default:
-                return LangEn;
+                return LangHe;
         }
     }
 
-    // public async setLang(lang: Enums.Language, version?: string, initial?: boolean): Promise<boolean> {
-    //     if (lang == this._lang)
-    //         return Promise.resolve(false);
-
-    //     if (!version && this._langVersions?.containsKey(lang.toString()))
-    //         version = this._langVersions.get(lang);
-
-    //     if (!version)
-    //         version = (new Date()).LanguageVersion();
-
-    //     // if not initial meaning we go into refresh, then don't do anything else
-    //     if (!initial) {
-    //         this._lang = lang;
-    //         await this._storage.set(Constants.Cookies.Language, lang.toString());
-    //         this.setDirectionCss();
-
-    //         return Promise.resolve(true);
-    //     }
-
-    //     const url = environment.ConfigLang + 'languages/' + 'lang-' + this.getLangName(lang) + '.json';
-
-    //     return this.getLanguage(url, version).then(async result => {
-    //         if (!result)
-    //             result = LangEn;
-
-    //         await this._storage.set(Constants.Cookies.Language, lang.toString());
-    //         const source = this.getLocalSource(lang);
-    //         this._source = this.mergeDeep(Object.assign({}, source), result);
-
-    //         this._lang = lang;
-    //         this.setDirectionCss();
-
-    //         return true;
-    //     });
-    // }
-
-    public async setLang(lang: Enums.Language, version?: string, initial?: boolean): Promise<boolean> {
-        console.log("setLang:");
-        console.log(lang);
-        if (lang == this._lang)
-            return Promise.resolve(false);
+    public async setLang(lang: Enums.Language, isInitial?: boolean): Promise<boolean> {
+        switch (lang) {
+            case Enums.Language.English:
+                this._source = LangEn;
+                break;
+            case Enums.Language.Hebrew:
+            default:
+                this._source = LangHe;
+                break;
+        }
 
         // if not initial meaning we go into refresh, then don't do anything else
-        if (!initial) {
+        if (!isInitial) {
             this._lang = lang;
             await this._storageService.set(Constants.Cookies.Language, lang.toString());
             this.setDirectionCss();
@@ -152,15 +82,25 @@ export class LanguageService {
             return Promise.resolve(true);
         }
 
+        this._storageService.set(Constants.Cookies.Language, lang.toString());
         this._lang = lang;
         this.setDirectionCss();
 
         return true;
     }
 
+    public onChengeLang(lang: Enums.Language): void {
+        this._storageService.set(Constants.Cookies.Language, lang.toString());
+        this.setDirectionCss();
+
+        let isChanged = this._lang != lang && this._lang != null;
+        this._lang = lang;
+        if (isChanged)
+            location.reload();
+    }
+
     private loadStyle(styleName: string): void {
         const head = this.document.getElementsByTagName('head')[0];
-
         const themeLink = this.document.getElementById('client-theme') as HTMLLinkElement;
         if (themeLink)
             themeLink.href = styleName;
@@ -174,13 +114,7 @@ export class LanguageService {
     }
 
     private setDirectionCss(): void {
-        console.log('setDirectionCss');
-        
         const currentLang = this.getLang();
-        
-        console.log("currentLang");
-        console.log(currentLang);
-        
         const rtlLangs = [Enums.Language.Hebrew];
         if (rtlLangs.indexOf(currentLang) >= 0) {
             this.loadStyle('global-rtl.css');
@@ -193,18 +127,6 @@ export class LanguageService {
             document.body.classList.remove('rtl');
             document.body.classList.add('ltr');
             this._isRtl = false;
-        }
-
-        if (this._languagesSizes[currentLang].Size)
-            this.loadStyle('size-' + this._languagesSizes[currentLang].Size);
-    }
-
-    public GetBCP47Locale(): string {
-        switch (this._lang) {
-            case Enums.Language.Hebrew: return "he-IL";
-            case Enums.Language.English:
-            default:
-                return "en-US";
         }
     }
 
@@ -224,7 +146,6 @@ export class LanguageService {
 
         const notAllReplaced = str.indexOf('$') >= 0;
         if (notAllReplaced) {
-
             // error
         }
 
@@ -232,10 +153,8 @@ export class LanguageService {
     }
 
     private changeInternalVars(str: string,): string {
-
         // noinspection RegExpRedundantEscape
         const regex = /\#\#\#\w+\#\#\#/gm;
-
         let res = str.match(regex);
 
         if (!res)
@@ -258,17 +177,15 @@ export class LanguageService {
     }
 
     public processFoundString(str: string, params: any): string {
-
         str = this.changeInternalVars(str);
-
         return this.fill(str, params);
     }
 
     public getStr(key: string, params?: object): string {
         if (!this._source)
-            this._source = LangEn;
+            this._source = LangHe;
 
-        return this.getStrFromSource(this._source, this._lang, key, params);
+        return this.getStrFromSource(this._source, this._lang ?? this.getDefaultLang(), key, params);
     }
 
     private getStrFromSource(source: any, sourceLang: Enums.Language, key: string, params?: object): string {
@@ -281,7 +198,6 @@ export class LanguageService {
             foundStr = source[keysArray[0]];
         else {
             let possibleStr: string | null;
-
             if (keysArray.length == 2 && source[keysArray[0]])
                 possibleStr = source[keysArray[0]][keysArray[1]];
             else
@@ -290,12 +206,11 @@ export class LanguageService {
             foundStr = possibleStr ? this.processFoundString(possibleStr, params) : null;
         }
 
-        return foundStr ? foundStr : key;
+        return foundStr ?? key;
     }
 
     private getRecursiveStr(obj: any, keysArray: Array<string>): string | null {
         const temp: any = keysArray[0];
-
         if (!obj[temp])
             return null;
 
@@ -348,7 +263,6 @@ export class LanguageService {
 
     public getAlertsText(key: string): { Title: string, Content: string } {
         const keysArray = key.split('.');
-
         const texts = {
             Title: this._source[keysArray[0]] && this._source[keysArray[0]][keysArray[1]] ? this._source[keysArray[0]][keysArray[1]].Title : '',
             Content: this._source[keysArray[0]] && this._source[keysArray[0]][keysArray[1]] ? this._source[keysArray[0]][keysArray[1]].Content : ''
@@ -363,14 +277,9 @@ export class LanguageService {
             case Enums.Language.English:
                 return 'en';
             case Enums.Language.Hebrew:
-                return 'he';
             default:
-                return 'en';
+                return 'he';
         }
-    }
-
-    public getCurrentLangName(): string {
-        return this.getLangName(this._lang);
     }
 
     // noinspection JSMethodCanBeStatic
@@ -390,7 +299,6 @@ export class LanguageService {
 
                 } else
                     Object.assign(output, { [key]: source[key] });
-
             });
         }
 
@@ -418,9 +326,5 @@ export class LanguageService {
 
     public isRtlLanguage(): boolean {
         return this._isRtl;
-    }
-
-    public getLanguageByCountry(country: string): Enums.Language {
-        return this._countryToLang.getOrDefault(country, Enums.Language.English);
     }
 }

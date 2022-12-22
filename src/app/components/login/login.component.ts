@@ -1,55 +1,44 @@
+import { LanguagePipe } from './../../pipes/language.pipe';
+import { CommonModule } from '@angular/common';
 import { StorageService } from './../../services/common/storage.service';
 import { LanguageService } from 'src/app/services/common/language.service';
-import { AfterContentInit, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { TranslatePipe } from 'src/app/pipes/translate/translate.pipe';
 import { Enums } from 'src/app/crm-common/enums';
 import { Constants } from 'src/app/crm-common/constants/languages/contstans';
+import { RouterLinkWithHref, RouterOutlet } from '@angular/router';
+import { EnumsUtils } from '../../utils/enums-utils'
+import { FormsModule } from '@angular/forms';
 
 @Component({
     selector: 'app-login',
     standalone: true,
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.scss'],
-    imports: [
-        TranslatePipe
-    ]
+    imports: [TranslatePipe, CommonModule, RouterLinkWithHref, RouterOutlet, LanguagePipe, FormsModule],
 })
-export class LoginComponent implements AfterContentInit {
+export class LoginComponent {
 
-    // public _preloaderTrigger: boolean;
-    public _currentLanguage: Enums.Language = Enums.Language.English;
-    public _currentCountry: string;
+    public _currentLanguage: Enums.Language = Enums.Language.Hebrew;
     public _showLogin = true;
 
-    // private _languages: Array<Enums.Language>;
-    
+    public _activeLanguages: Array<Enums.Language> = EnumsUtils.getEnumValues(Enums.Language);
+
     constructor(private _languageService: LanguageService, private _storageService: StorageService) {
-        
-        this._currentCountry = this._storageService.getValue(Constants.Cookies.AppParams.Country);
-    }
-
-    public async ngAfterContentInit(): Promise<void> {
-        console.log("LoginComponent:");
-        console.log("ngAfterContentInit:");
-        
-        // this._languages = this._languageService.getActiveLangs();
-
-        let country = this._storageService.getValue(Constants.Cookies.AppParams.Country) ?? Enums.Language.Hebrew;
-        // if (!country) {
-        //     country = await this._registrationService.getCountry();
-        //     await this._storageService.setValue(Constants.Cookies.AppParams.Country, country);
-        // }
-
         const lang = this._storageService.get(Constants.Cookies.Language);
-        this._currentLanguage = lang ? Number(lang) : this._languageService.getLanguageByCountry(country);
+        this._currentLanguage = lang ? Number(lang) : Enums.Language.Hebrew;
         this.onLanguageClick(this._currentLanguage);
-        this._currentCountry = country;
     }
 
     private onLanguageClick(language: Enums.Language): void {
-        this._languageService.setLang(language).then(() => {
+        this._languageService.setLang(language, true).then(() => {
             this._currentLanguage = language;
         });
+    }
+
+    public onChaneLang(e: Event): void {
+        const selectedLang = Number((e.target as HTMLInputElement).value)
+        this._languageService.onChengeLang(selectedLang);
     }
 
 }

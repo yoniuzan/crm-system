@@ -16,7 +16,7 @@ bootstrapApplication(AppComponent, {
         provideHttpClient(
             withXsrfConfiguration({ cookieName: '', headerName: '' }),
             withJsonpSupport()
-          ),
+        ),
     ]
 })
 
