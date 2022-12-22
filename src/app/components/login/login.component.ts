@@ -1,14 +1,15 @@
-import { LanguagePipe } from './../../pipes/language.pipe';
-import { CommonModule } from '@angular/common';
-import { StorageService } from './../../services/common/storage.service';
-import { LanguageService } from 'src/app/services/common/language.service';
-import { Component } from '@angular/core';
-import { TranslatePipe } from 'src/app/pipes/translate/translate.pipe';
-import { Enums } from 'src/app/crm-common/enums';
-import { Constants } from 'src/app/crm-common/constants/languages/contstans';
-import { RouterLinkWithHref, RouterOutlet } from '@angular/router';
-import { EnumsUtils } from '../../utils/enums-utils'
-import { FormsModule } from '@angular/forms';
+import { CommonModule } from "@angular/common";
+import { Component } from "@angular/core";
+import { FormsModule } from "@angular/forms";
+import { RouterLinkWithHref, RouterOutlet } from "@angular/router";
+import { Constants } from "src/app/crm-common/constants/languages/contstans";
+import { Enums } from "src/app/crm-common/enums";
+import { LanguagePipe } from "src/app/pipes/language.pipe";
+import { TranslatePipe } from "src/app/pipes/translate/translate.pipe";
+import { LanguageService } from "src/app/services/common/language.service";
+import { StorageService } from "src/app/services/common/storage.service";
+import { EnumsUtils } from "src/app/utils/enums-utils";
+
 
 @Component({
     selector: 'app-login',

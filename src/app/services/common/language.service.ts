@@ -1,5 +1,4 @@
 import { HttpService } from './http.service';
-import { Inject, Injectable } from '@angular/core';
 import { Enums } from '../../crm-common/enums';
 import { LangEn } from '../../crm-common/constants/languages/en/lang-en';
 import { LangHe } from '../../crm-common/constants/languages/he/lang-he';
@@ -7,6 +6,7 @@ import { DOCUMENT } from '@angular/common';
 import { Constants } from 'src/app/crm-common/constants/languages/contstans';
 import { Dictionary } from 'src/app/crm-common/models/structures/dictionary/dictionary';
 import { StorageService } from './storage.service';
+import { Injectable, Inject } from '@angular/core';
 
 @Injectable({
     providedIn: 'root'
