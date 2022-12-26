@@ -1,14 +1,28 @@
-<div>
-    <!-- <h1>Routing and lazy loading</h1>
+<!-- <div>
+    <h1>Routing and lazy loading</h1>
     <ul>
         <li> <a [routerLink]="['home']">Home</a></li>
         <li> <a [routerLink]="['dashboard']">Dashboard</a></li>
         <li> <a [routerLink]="['users']">Users</a></li>
     </ul>
-    <router-outlet></router-outlet> -->
+    <router-outlet></router-outlet>
+
     <p>{{'Login.SignIn' | translate}}</p>
 
     <select (change)="onChaneLang($event)" [(ngModel)]="_currentLanguage">
         <option *ngFor="let lang of _activeLanguages" [value]="lang">{{lang | language}}</option> 
     </select>
+</div> -->
+
+<div class="login">
+    <div class="login__header">
+        <svg viewBox="0 0 500 150" preserveAspectRatio="none" class="login__header__svg">
+            <path d="M0.00,49.98 C149.99,150.00 271.49,-49.98 500.00,49.98 L500.00,0.00 L0.00,0.00 Z"
+                class="login__header__svg__path"></path>
+        </svg>
+    </div>
+
+    <div class="login__main">
+
+    </div>
 </div>

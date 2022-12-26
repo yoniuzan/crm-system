@@ -1,0 +1,19 @@
+.login {
+    &__header {
+        height: 150px;
+        overflow: hidden;
+
+        &__svg {
+            height: 100%;
+            width: 100%;
+
+            &__path {
+                stroke: none;
+                fill: #08f;
+            }
+        }
+    }
+
+    &__main {
+    }
+}
