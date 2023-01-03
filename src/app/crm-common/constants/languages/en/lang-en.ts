@@ -1,7 +1,11 @@
 export class LangEn {
     
     public static Login = {
-        SignIn: 'Sign In'
+        SignIn: 'Sign In',
+        EnterUserName: 'Enter your user name',
+        UserName: 'User Name',
+        EnterPassword: 'Enter your password',
+        Password: 'Password'
     }
 
     public static Languages = {

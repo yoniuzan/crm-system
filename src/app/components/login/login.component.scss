@@ -15,5 +15,15 @@
     }
 
     &__main {
+        display: flex;
+        justify-content: center;
+
+        &__card {
+            max-width: 480px;
+            min-height: 300px;
+            padding: 20px;
+            border: 1px solid #ddd;
+        }
     }
 }
+

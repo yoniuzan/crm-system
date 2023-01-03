@@ -1,7 +1,9 @@
 export class LangHe {
     
     public static Login = {
-        SignIn: 'כניסה'
+        SignIn: 'כניסה',
+        UserName: 'שם משתמש',
+        Password: 'סיסמה'
     }
 
     public static Languages = {
