@@ -14,4 +14,8 @@ export class LangEn {
         Hebrew: 'עברית',
         LanguageTip: 'You can change language here'
     };
+
+    public static ErrorMessage = {
+        MustEnterValue: 'You must enter a value',
+    }
 }

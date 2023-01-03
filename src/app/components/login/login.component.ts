@@ -11,9 +11,9 @@ import { LanguageService } from "src/app/services/common/language.service";
 import { StorageService } from "src/app/services/common/storage.service";
 import { EnumsUtils } from "src/app/utils/enums-utils";
 import { MatCardModule } from '@angular/material/card';
-import { MatFormFieldModule  } from '@angular/material/form-field';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
- 
+
 @Component({
     selector: 'app-login',
     standalone: true,
@@ -36,6 +36,7 @@ export class LoginComponent {
     constructor(private _languageService: LanguageService, private _storageService: StorageService) {
         const lang = this._storageService.get(Constants.Cookies.Language);
         this._currentLanguage = lang ? Number(lang) : Enums.Language.Hebrew;
+        // this._currentLanguage = Enums.Language.English; //TODO delete this
         this._userLogin = new UserLogin;
         this.onLanguageClick(this._currentLanguage);
     }
@@ -51,19 +52,14 @@ export class LoginComponent {
         this._languageService.onChengeLang(selectedLang);
     }
 
-    getErrorMessage() {    
-        if (this._userLogin.UserName.hasError('required') || this._userLogin.Password.hasError('required')) {
-            return 'You must enter a value';
-        }
+    getErrorUserNameMessage() {
+        // if (this._userLogin.UserName.hasError('required') || this._userLogin.Password.hasError('required')) {
+        //     return this._languageService.getStr('ErrorMessage.MustEnterValue');
+        // }
+        return this._userLogin.UserName.hasError('required') ? this._languageService.getStr('ErrorMessage.MinUserNameLength') : '';
+    }
 
-        if (this._userLogin.UserName.hasError('minlength')) {
-            return 'Min length user name is 2';
-        }
-
-        if (this._userLogin.Password.hasError('minlength')) {
-            return 'Min length user name is 6';
-        }
-
-        return '';
+    getErrorPasswordMessage() {
+        return this._userLogin.Password.hasError('required') || this._userLogin.Password.hasError('minlength') ? this._languageService.getStr('ErrorMessage.MinPasswordLength') : '';
     }
 }

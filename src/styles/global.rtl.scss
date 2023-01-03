@@ -32,5 +32,9 @@ body {
     .flipped-image-scale {
       transform: scaleX(1) !important;
     }
+
+    mat-error{
+        text-align: initial;
+    }
   }
 }

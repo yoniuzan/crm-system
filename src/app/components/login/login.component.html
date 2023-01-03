@@ -32,13 +32,14 @@
             <mat-form-field appearance="fill">
                 <mat-label>{{'Login.EnterUserName' | translate}}</mat-label>
                 <input matInput [placeholder]="('Login.UserName'|translate)" [formControl]="userName" required>
-                <mat-error *ngIf="userName.invalid">{{getErrorMessage()}}</mat-error>
+                <mat-error *ngIf="userName.invalid">{{getErrorUserNameMessage()}}</mat-error>
             </mat-form-field>
 
             <mat-form-field appearance="fill">
                 <mat-label>{{'Login.EnterPassword' | translate}}</mat-label>
-                <input matInput [placeholder]="('Login.Password'|translate)" [formControl]="_userLogin.Password" required type="password">
-                <mat-error *ngIf="_userLogin.Password.invalid">{{getErrorMessage()}}</mat-error>
+                <input matInput [placeholder]="('Login.Password'|translate)" [formControl]="_userLogin.Password"
+                    required type="password">
+                <mat-error *ngIf="_userLogin.Password.invalid">{{getErrorPasswordMessage()}}</mat-error>
             </mat-form-field>
 
         </mat-card>
