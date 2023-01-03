@@ -11,15 +11,14 @@ import { LanguageService } from "src/app/services/common/language.service";
 import { StorageService } from "src/app/services/common/storage.service";
 import { EnumsUtils } from "src/app/utils/enums-utils";
 import { MatCardModule } from '@angular/material/card';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
+import { CrmMatFormField, FormFieldComponent } from 'src/app/crm-common/mat-components/form-field/form-field.component';
 
 @Component({
     selector: 'app-login',
     standalone: true,
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.scss'],
-    imports: [TranslatePipe, CommonModule, RouterLinkWithHref, RouterOutlet, LanguagePipe, FormsModule, MatCardModule, MatFormFieldModule, ReactiveFormsModule, MatInputModule],
+    imports: [FormFieldComponent, TranslatePipe, CommonModule, RouterLinkWithHref, RouterOutlet, LanguagePipe, FormsModule, MatCardModule],
 })
 export class LoginComponent {
 
@@ -27,18 +26,22 @@ export class LoginComponent {
     public _showLogin = true;
 
     public _activeLanguages: Array<Enums.Language> = EnumsUtils.getEnumValues(Enums.Language);
-
-    public _userLogin: UserLogin;
-
-    userName = new FormControl('', [Validators.required, Validators.minLength(2)]);
-    password = new FormControl('', [Validators.required, Validators.minLength(6)]);
+    
+    public _userLoginForm: Array<CrmMatFormField> = [];
 
     constructor(private _languageService: LanguageService, private _storageService: StorageService) {
         const lang = this._storageService.get(Constants.Cookies.Language);
         this._currentLanguage = lang ? Number(lang) : Enums.Language.Hebrew;
         // this._currentLanguage = Enums.Language.English; //TODO delete this
-        this._userLogin = new UserLogin;
+        this.initUserLoginForm();
         this.onLanguageClick(this._currentLanguage);
+    }
+
+    private initUserLoginForm(): void {
+        this._userLoginForm.push(
+            { label: 'Login.EnterUserName', placeholder: 'Login.UserName', formControl: new FormControl('', [Validators.required, Validators.minLength(2)]), type: Enums.FormFieldType.Text },
+            { label: 'Login.EnterPassword', placeholder: 'Login.Password', formControl: new FormControl('', [Validators.required, Validators.minLength(6)]), type: Enums.FormFieldType.Password }
+        )
     }
 
     private onLanguageClick(language: Enums.Language): void {
@@ -50,16 +53,5 @@ export class LoginComponent {
     public onChaneLang(e: Event): void {
         const selectedLang = Number((e.target as HTMLInputElement).value)
         this._languageService.onChengeLang(selectedLang);
-    }
-
-    getErrorUserNameMessage() {
-        // if (this._userLogin.UserName.hasError('required') || this._userLogin.Password.hasError('required')) {
-        //     return this._languageService.getStr('ErrorMessage.MustEnterValue');
-        // }
-        return this._userLogin.UserName.hasError('required') ? this._languageService.getStr('ErrorMessage.MinUserNameLength') : '';
-    }
-
-    getErrorPasswordMessage() {
-        return this._userLogin.Password.hasError('required') || this._userLogin.Password.hasError('minlength') ? this._languageService.getStr('ErrorMessage.MinPasswordLength') : '';
     }
 }
