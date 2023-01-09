@@ -1,7 +1,7 @@
 import { UserLogin } from './../../crm-common/models/login/user-login';
 import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
-import { FormControl, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
+import { FormControl, FormsModule, Validators } from "@angular/forms";
 import { RouterLinkWithHref, RouterOutlet } from "@angular/router";
 import { Constants } from "src/app/crm-common/constants/languages/contstans";
 import { Enums } from "src/app/crm-common/enums";
@@ -13,13 +13,14 @@ import { EnumsUtils } from "src/app/utils/enums-utils";
 import { MatCardModule } from '@angular/material/card';
 import { CrmMatFormField, FormFieldComponent } from 'src/app/crm-common/mat-components/form-field/form-field.component';
 import { BaseComponent } from 'src/app/crm-common/components/base/base/base.component';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
     selector: 'app-login',
     standalone: true,
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.scss'],
-    imports: [FormFieldComponent, TranslatePipe, CommonModule, RouterLinkWithHref, RouterOutlet, LanguagePipe, FormsModule, MatCardModule],
+    imports: [FormFieldComponent, TranslatePipe, CommonModule, RouterLinkWithHref, RouterOutlet, LanguagePipe, FormsModule, MatCardModule, MatButtonModule],
 })
 export class LoginComponent extends BaseComponent {
 
@@ -27,8 +28,10 @@ export class LoginComponent extends BaseComponent {
     public _showLogin = true;
 
     public _activeLanguages: Array<Enums.Language> = EnumsUtils.getEnumValues(Enums.Language);
-    
+
     public _userLoginForm: Array<CrmMatFormField> = [];
+    public _isValidating: boolean = false;
+
 
     constructor(private _languageService: LanguageService, private _storageService: StorageService) {
         super();
@@ -55,5 +58,28 @@ export class LoginComponent extends BaseComponent {
     public onChaneLang(e: Event): void {
         const selectedLang = Number((e.target as HTMLInputElement).value)
         this._languageService.onChengeLang(selectedLang);
+    }
+
+    public login(): void {
+        this._isValidating = true;
+
+        
+
+        // this.authenticationService.login(this.model).subscribe(
+        //     () => {
+        //         // this.isAuthenticated =  true;
+        //         console.log(" next action here ... ");
+        //     },
+        //     (error: any) => {
+        //         console.log(error);
+        //         this._isValidating = false;
+        //     },
+        //     () => {
+        //         this._isValidating = false;
+        //         console.log("login " + this.returnUrl);
+        //         this.isAuth.emit(true);
+        //         this.router.navigate([this.returnUrl]);
+        //     }
+        // );
     }
 }

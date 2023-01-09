@@ -5,7 +5,8 @@ export class LangHe {
         UserName: 'שם משתמש',
         Password: 'סיסמה',
         EnterUserName: 'הכנס/י שם משתמש',
-        EnterPassword: 'הכנס/י סיסמה'
+        EnterPassword: 'הכנס/י סיסמה',
+        Login: 'התחבר/י'
     }
 
     public static Languages = {

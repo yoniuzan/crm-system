@@ -19,11 +19,16 @@
         justify-content: center;
 
         &__card {
-            max-width: 480px;
+            // max-width: 480px;
+            width: 400px;
             min-height: 300px;
             padding: 20px;
             border: 1px solid #ddd;
         }
+
+        &__action-item {
+            margin-right: 10px;
+            float: right;
+        }
     }
 }
-
