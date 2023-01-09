@@ -12,6 +12,7 @@ import { StorageService } from "src/app/services/common/storage.service";
 import { EnumsUtils } from "src/app/utils/enums-utils";
 import { MatCardModule } from '@angular/material/card';
 import { CrmMatFormField, FormFieldComponent } from 'src/app/crm-common/mat-components/form-field/form-field.component';
+import { BaseComponent } from 'src/app/crm-common/components/base/base/base.component';
 
 @Component({
     selector: 'app-login',
@@ -20,7 +21,7 @@ import { CrmMatFormField, FormFieldComponent } from 'src/app/crm-common/mat-comp
     styleUrls: ['./login.component.scss'],
     imports: [FormFieldComponent, TranslatePipe, CommonModule, RouterLinkWithHref, RouterOutlet, LanguagePipe, FormsModule, MatCardModule],
 })
-export class LoginComponent {
+export class LoginComponent extends BaseComponent {
 
     public _currentLanguage: Enums.Language = Enums.Language.Hebrew;
     public _showLogin = true;
@@ -30,6 +31,7 @@ export class LoginComponent {
     public _userLoginForm: Array<CrmMatFormField> = [];
 
     constructor(private _languageService: LanguageService, private _storageService: StorageService) {
+        super();
         const lang = this._storageService.get(Constants.Cookies.Language);
         this._currentLanguage = lang ? Number(lang) : Enums.Language.Hebrew;
         // this._currentLanguage = Enums.Language.English; //TODO delete this

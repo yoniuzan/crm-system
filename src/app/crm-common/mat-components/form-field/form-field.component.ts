@@ -7,6 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { LanguagePipe } from 'src/app/pipes/language.pipe';
 import { TranslatePipe } from 'src/app/pipes/translate/translate.pipe';
+import { BaseComponent } from '../../components/base/base/base.component';
 
 export type CrmMatFormField = { label: string, placeholder: string, formControl: FormControl, type: Enums.FormFieldType }
 
@@ -17,13 +18,12 @@ export type CrmMatFormField = { label: string, placeholder: string, formControl:
     styleUrls: ['./form-field.component.scss'],
     imports: [TranslatePipe, CommonModule, LanguagePipe, FormsModule, MatFormFieldModule, ReactiveFormsModule, MatInputModule]
 })
-export class FormFieldComponent {
+export class FormFieldComponent extends BaseComponent {
 
     @Input('crm-form-field') _crmFormField: CrmMatFormField;
 
-    public enums = Enums;
-
     constructor(private _languageService: LanguageService) {
+        super();
     }
 
     public getErrorMessage(): string {

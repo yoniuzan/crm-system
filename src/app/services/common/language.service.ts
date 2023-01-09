@@ -106,7 +106,7 @@ export class LanguageService {
             themeLink.href = styleName;
         else {
             const style = this.document.createElement('link');
-            style.rel = 'stylesheet';
+            // style.rel = 'stylesheet'; // get red error in console 'Refused to apply style from..'
             style.href = `${styleName}`;
 
             head.appendChild(style);
