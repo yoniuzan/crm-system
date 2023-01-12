@@ -45,6 +45,7 @@ export class LanguageService {
 
     // noinspection JSMethodCanBeStatic
     private getDefaultLang(): Enums.Language {
+        
         return Enums.Language.Hebrew;
     }
 
@@ -155,7 +156,7 @@ export class LanguageService {
     private changeInternalVars(str: string,): string {
         // noinspection RegExpRedundantEscape
         const regex = /\#\#\#\w+\#\#\#/gm;
-        let res = str.match(regex);
+        let res: string[] | null = str.match(regex);
 
         if (!res)
             return str;

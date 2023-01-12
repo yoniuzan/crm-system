@@ -16,7 +16,7 @@ import { BaseComponent } from 'src/app/crm-common/components/base/base/base.comp
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
-    selector: 'app-login',
+    selector: 'login',
     standalone: true,
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.scss'],
@@ -31,7 +31,6 @@ export class LoginComponent extends BaseComponent {
 
     public _userLoginForm: Array<CrmMatFormField> = [];
     public _isValidating: boolean = false;
-
 
     constructor(private _languageService: LanguageService, private _storageService: StorageService) {
         super();
@@ -62,9 +61,6 @@ export class LoginComponent extends BaseComponent {
 
     public login(): void {
         this._isValidating = true;
-
-        
-
         // this.authenticationService.login(this.model).subscribe(
         //     () => {
         //         // this.isAuthenticated =  true;

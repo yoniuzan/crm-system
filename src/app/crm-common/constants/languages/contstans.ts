@@ -1,3 +1,4 @@
+import { AppComponent } from './../../../app.component';
 export class Constants {
 
     public static Cookies = {
@@ -10,9 +11,11 @@ export class Constants {
     };
 
     public static Routes = {
+        AppComponent: 'app-component',
         Login: 'login',
         Home: 'home',
         Dashboard: 'dashboard',
-        Users: 'users'
+        Users: 'users',
+        Customers: 'customers'
     };
 }

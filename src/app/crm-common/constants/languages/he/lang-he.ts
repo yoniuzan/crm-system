@@ -21,4 +21,12 @@ export class LangHe {
         MinUserNameLength: 'שם משתמש חייב להכיל 2 תווים לפחות',
         MinPasswordLength: 'סיסמה חייבת להכיל 6 תווים לפחות',
     }
+
+    public static Menu = {
+        Dashboard: 'דשבורד',
+        Orders: 'הזמנות',
+        Customers: 'לקוחות',
+        Products: 'מוצרים',
+        About: 'מידע',
+    }
 }

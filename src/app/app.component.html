@@ -1,1 +1,4 @@
-<router-outlet></router-outlet>
+<login *ngIf="!_isAuthenticated" (isAuth)="isAuth($event)"> </login>
+
+<init-app *ngIf="_isAuthenticated" (on-logout)="onLogout()"></init-app>
+<!-- <router-outlet></router-outlet> -->

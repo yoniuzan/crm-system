@@ -1,0 +1,51 @@
+<mat-sidenav-container class="app-container" autosize fullscreen (backdropClick)="onMenuItem()">
+    <mat-sidenav dark #sidenav id="appnav" [mode]="mode.value" [opened]="!isMobile" [position]="isRtl? 'end' : 'start'">
+        <div class="app-container__sidenav-manu">
+            <mat-card class="app-container__sidenav-manu__profile-card">
+                <mat-card-header class="app-container__sidenav-manu__profile-card__header">
+                    <img mat-card-avatar src="/assets/customersAvatar.jpg"
+                        class="app-container__sidenav-manu__profile-card__header__avatar">
+
+                    <mat-card-title [hidden]="user!==null && user!==undefined" style="padding:5px;">
+                        {{user.firstname}} {{user.lastname}} {{'asdasdasdasdasd'}}
+                    </mat-card-title>
+
+                    <button *ngIf="isMenuOpen" mat-icon-button (click)="onMenuItem()">
+                        <mat-icon>clear</mat-icon>
+                    </button>
+
+                </mat-card-header>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="logout()">Logout</button>
+                    <button mat-menu-item>Change Password</button>
+                </mat-menu>
+            </mat-card>
+
+            <mat-nav-list class="app-container__sidenav-manu__list">
+                <a *ngFor="let item of menuItems" class="app-container__sidenav-manu__list__item"
+                    [routerLink]="[item.RouterLink]">
+                    <mat-icon mat-list-icon>{{item.IconName}}</mat-icon>
+                    <span mat-line>{{item.Text | translate}}</span>
+                </a>
+            </mat-nav-list>
+
+            <button class="app-container__sidenav-manu__setting" mat-mini-fab [matMenuTriggerFor]="menu">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+        </div>
+    </mat-sidenav>
+
+    <mat-sidenav-content class="app-container__sidenav-content">
+        <mat-toolbar dark class="app-container__sidenav-content__toolbar">
+            <button *ngIf="!isMenuOpen" mat-icon-button (click)="onMenuItem()">
+                <mat-icon mat-list-icon>list</mat-icon>
+            </button>
+            <span class="app-container__sidenav-content__toolbar__logo">LOGO</span>
+        </mat-toolbar>
+        <div class="app-container__sidenav-content__main-content">
+            <!-- [hidden]="!authService.isAuthenticated()"> -->
+            <router-outlet></router-outlet>
+        </div>
+
+    </mat-sidenav-content>
+</mat-sidenav-container>

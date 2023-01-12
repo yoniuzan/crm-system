@@ -1,0 +1,94 @@
+.app-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+
+    &__sidenav-manu {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+
+        &__profile-card {
+            height: 64px;
+
+            &__header {
+                display: flex !important;
+                justify-content: space-between !important;
+                align-items: center !important;
+                height: 100%;
+                padding: 0;
+
+                &__avatar {
+                    // background-image: url("/assets/img/avatar0.png");
+                    background-size: cover;
+                    vertical-align: middle;
+                    width: 40px;
+                    height: 40px;
+                    margin: unset;
+                    padding: 10px 16px;
+                    border-radius: 50%;
+                }
+            }
+        }
+
+        &__list {
+            display: flex;
+            flex-direction: column;
+
+            &__item {
+                display: flex;
+                padding: 14px;
+
+                text-decoration: auto;
+                color: black;
+                cursor: pointer;
+
+                .mat-icon {
+                    margin-inline-end: 6px;
+                }
+            }
+
+            :hover {
+                background-color: gray;
+            }
+        }
+
+        &__setting {
+            margin: 16px;
+            margin-block-start: auto;
+        }
+    }
+
+    &__sidenav-content {
+        // overflow-x: hidden;
+        // display: unset;
+        position: relative;
+        z-index: 1;
+        display: block;
+        height: 100%;
+        overflow: auto;
+
+        &__toolbar {
+            background-color: rgb(228, 224, 224);
+
+            &__logo {
+                margin-inline-start: auto;
+            }
+        }
+
+        &__main-content {
+            margin: 20px;
+        }
+    }
+}
+
+a.active {
+    background-color: gray;
+}
+
+#appnav {
+    min-width: 18em;
+}

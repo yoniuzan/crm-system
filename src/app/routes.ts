@@ -3,7 +3,7 @@ import { Constants } from './crm-common/constants/languages/contstans';
 
 export const routes: Routes = [
     {
-        path: '', redirectTo: Constants.Routes.Login, pathMatch: 'full', data: { hidden: false }
+        path: '', redirectTo: Constants.Routes.AppComponent, pathMatch: 'full', data: { hidden: false }
     },
     {
         path: Constants.Routes.Login,
@@ -18,8 +18,8 @@ export const routes: Routes = [
         loadComponent: () => import('./components/dashboard/dashboard.component').then((m) => m.DashboardComponent),
     },
     {
-        path: Constants.Routes.Users,
-        loadComponent: () => import('./components/users/users.component').then((m) => m.UsersComponent),
+        path: Constants.Routes.Customers,
+        loadComponent: () => import('./components/customers/customers.component').then((m) => m.CustomersComponent),
     },
 ];
 

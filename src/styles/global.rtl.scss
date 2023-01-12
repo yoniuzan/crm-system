@@ -36,5 +36,9 @@ body {
     mat-error{
         text-align: initial;
     }
+
+    .cdk-overlay-connected-position-bounding-box {
+        align-items: unset !important;
+    }
   }
 }
