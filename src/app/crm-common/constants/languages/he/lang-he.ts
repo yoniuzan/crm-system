@@ -28,5 +28,10 @@ export class LangHe {
         Customers: 'לקוחות',
         Products: 'מוצרים',
         About: 'מידע',
+        Settings: 'הגדרות'
+    }
+
+    public static Settings = {
+        SelectLang: 'אנא בחר/י שפה',
     }
 }

@@ -91,6 +91,7 @@ export class LanguageService {
     }
 
     public onChengeLang(lang: Enums.Language): void {
+        
         this._storageService.set(Constants.Cookies.Language, lang.toString());
         this.setDirectionCss();
 

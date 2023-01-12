@@ -52,7 +52,7 @@ export class InitAppComponent implements OnInit {
             new MenuItem('shopping_cart', 'Menu.Orders', 'order'),
             new MenuItem('account_box', 'Menu.Customers', Constants.Routes.Customers),
             new MenuItem('store', 'Menu.Products', 'product'),
-            new MenuItem('info_outline', 'Menu.About', 'about'),
+            new MenuItem('settings', 'Menu.Settings', Constants.Routes.Settings),
         )
     }
 

@@ -40,5 +40,10 @@ body {
     .cdk-overlay-connected-position-bounding-box {
         align-items: unset !important;
     }
+
+    div#mat-select-value-1 {
+        margin-inline-end: auto;
+        display: flex;
+    }
   }
 }

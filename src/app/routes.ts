@@ -1,3 +1,4 @@
+import { SettingsComponent } from './components/settings/settings.component';
 import { Routes } from '@angular/router';
 import { Constants } from './crm-common/constants/languages/contstans';
 
@@ -20,6 +21,10 @@ export const routes: Routes = [
     {
         path: Constants.Routes.Customers,
         loadComponent: () => import('./components/customers/customers.component').then((m) => m.CustomersComponent),
+    },
+    {
+        path: Constants.Routes.Settings,
+        loadComponent: () => import('./components/settings/settings.component').then((m) => m.SettingsComponent),
     },
 ];
 

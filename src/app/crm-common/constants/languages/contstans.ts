@@ -16,6 +16,7 @@ export class Constants {
         Home: 'home',
         Dashboard: 'dashboard',
         Users: 'users',
-        Customers: 'customers'
+        Customers: 'customers',
+        Settings: 'settings'
     };
 }
