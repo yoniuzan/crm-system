@@ -1,3 +1,4 @@
+import { HttpService } from './../../services/common/http.service';
 import { UserLogin } from './../../crm-common/models/login/user-login';
 import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
@@ -14,6 +15,7 @@ import { MatCardModule } from '@angular/material/card';
 import { CrmMatFormField, FormFieldComponent } from 'src/app/crm-common/mat-components/form-field/form-field.component';
 import { BaseComponent } from 'src/app/crm-common/components/base/base/base.component';
 import { MatButtonModule } from '@angular/material/button';
+import { Convert } from 'src/app/crm-common/convert';
 
 @Component({
     selector: 'login',
@@ -32,7 +34,7 @@ export class LoginComponent extends BaseComponent {
     public _userLoginForm: Array<CrmMatFormField> = [];
     public _isValidating: boolean = false;
 
-    constructor(private _languageService: LanguageService, private _storageService: StorageService) {
+    constructor(private _languageService: LanguageService, private _storageService: StorageService, private _httpService : HttpService) {
         super();
         const lang = this._storageService.get(Constants.Cookies.Language);
         this._currentLanguage = lang ? Number(lang) : Enums.Language.Hebrew;
@@ -61,6 +63,10 @@ export class LoginComponent extends BaseComponent {
 
     public login(): void {
         this._isValidating = true;
+        this._httpService.get('', {}, Convert.Get).then(res => {
+            console.log(res);
+        });
+         
         // this.authenticationService.login(this.model).subscribe(
         //     () => {
         //         // this.isAuthenticated =  true;
