@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { ArraySorter } from '../crm-common/models/structures/array/array-sorter';
 import { Dictionary } from '../crm-common/models/structures/dictionary/dictionary';
 
@@ -75,17 +76,16 @@ declare global {
 
 const _global = (window) as any;// || global
 
-_global.isEmpty = function (...args: any): boolean {
-    
-    for (let i = 0; i < arguments.length; i++) {
-        const object = arguments[i];
-
-        if (object == null ||
-            object == undefined ||
-            (typeof object === 'object' && Object.keys(object).length == 0) ||
-            (typeof object === 'string' && object.trim().length == 0))
-
+_global.isEmpty = function (...args: any[]): boolean {
+    for (const object of args) {
+        if (
+            object == null ||
+            object === undefined ||
+            (typeof object === 'object' && Object.keys(object).length === 0) ||
+            (typeof object === 'string' && object.trim().length === 0)
+        ) {
             return true;
+        }
     }
 
     return false;
@@ -107,7 +107,7 @@ _global.isNotEmpty = function (object: any | null | undefined): boolean {
 _global.foreach = function (obj: any, callback: (key: any, value: any, ix: number) => any): any {
     let ix = 0;
     for (const i in obj) {
-        if (!obj.hasOwnProperty(i))
+        if (!Object.prototype.hasOwnProperty.call(obj, i))
             continue;
 
         callback(i, obj[i], ix);

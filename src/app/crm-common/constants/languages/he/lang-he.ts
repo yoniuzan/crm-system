@@ -7,7 +7,7 @@ export class LangHe {
         EnterUserName: 'הכנס/י שם משתמש',
         EnterPassword: 'הכנס/י סיסמה',
         Login: 'התחבר/י'
-    }
+    };
 
     public static Languages = {
         SelectLanguage: 'בחר/י שפה',
@@ -20,7 +20,7 @@ export class LangHe {
         MustEnterValue: 'את/ה חייב/ת להכניס ערך',
         MinUserNameLength: 'שם משתמש חייב להכיל 2 תווים לפחות',
         MinPasswordLength: 'סיסמה חייבת להכיל 6 תווים לפחות',
-    }
+    };
 
     public static Menu = {
         Dashboard: 'דשבורד',
@@ -29,9 +29,9 @@ export class LangHe {
         Products: 'מוצרים',
         About: 'מידע',
         Settings: 'הגדרות'
-    }
+    };
 
     public static Settings = {
         SelectLang: 'אנא בחר/י שפה',
-    }
+    };
 }

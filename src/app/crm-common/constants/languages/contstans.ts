@@ -1,4 +1,3 @@
-import { AppComponent } from './../../../app.component';
 export class Constants {
 
     public static Cookies = {

@@ -1,7 +1,7 @@
 export class MenuItem {
-    IconName: string;
-    Text: string;
-    RouterLink: string;
+    public IconName: string;
+    public Text: string;
+    public RouterLink: string;
    
     constructor(iconName: string, text: string, routerLink: string) {
         this.IconName = iconName;

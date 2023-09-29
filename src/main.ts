@@ -3,7 +3,7 @@ import { AppComponent } from './app/app.component';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideRouter, withPreloading } from '@angular/router';
 import { routes } from './app/routes';
-import { provideHttpClient, withXsrfConfiguration, withJsonpSupport } from '@angular/common/http'
+import { provideHttpClient, withXsrfConfiguration, withJsonpSupport } from '@angular/common/http';
 import './app/utils/global';
 import './app/utils/extensions/string-extension';
 import './app/utils/extensions/date-extension';
@@ -14,9 +14,8 @@ import { importProvidersFrom } from '@angular/core';
 
 bootstrapApplication(AppComponent, {
     providers: [
-    provideRouter(routes, withPreloading(CustomPreloadingService)),
-    provideHttpClient(withXsrfConfiguration({ cookieName: '', headerName: '' }), withJsonpSupport()),
-    importProvidersFrom(BrowserAnimationsModule)
-]
-})
-
+        provideRouter(routes, withPreloading(CustomPreloadingService)),
+        provideHttpClient(withXsrfConfiguration({ cookieName: '', headerName: '' }), withJsonpSupport()),
+        importProvidersFrom(BrowserAnimationsModule)
+    ]
+});

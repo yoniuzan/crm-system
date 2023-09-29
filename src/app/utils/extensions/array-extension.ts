@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { ArraySorter } from 'src/app/crm-common/models/structures/array/array-sorter';
 import { Dictionary } from 'src/app/crm-common/models/structures/dictionary/dictionary';
 

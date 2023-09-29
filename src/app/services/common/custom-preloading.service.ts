@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Injectable } from '@angular/core';
 import { Route } from '@angular/router';
 import { Observable, of } from 'rxjs';
@@ -10,8 +11,6 @@ declare const navigator: any; // getting navigator object from the browser
 })
 
 export class CustomPreloadingService {
-
-    constructor() { }
 
     // Function that run for each module
 

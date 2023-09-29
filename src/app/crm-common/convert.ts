@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export class Convert {
 
     public static Get(data: any): string {
@@ -6,6 +7,4 @@ export class Convert {
 
         return data;
     }
-
-
 }

@@ -1,4 +1,3 @@
-import { SettingsComponent } from './components/settings/settings.component';
 import { Routes } from '@angular/router';
 import { Constants } from './crm-common/constants/languages/contstans';
 
@@ -37,4 +36,3 @@ export const routes: Routes = [
 //     exports: [RouterModule],
 // })
 // export class AppRoutingModule { }
-

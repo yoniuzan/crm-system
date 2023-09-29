@@ -13,7 +13,7 @@ import { LoginComponent } from './components/login/login.component';
 
 })
 export class AppComponent {
-    title = 'crm-system';
+    public title = 'crm-system';
 
     public _isAuthenticated: boolean;
 
@@ -22,14 +22,15 @@ export class AppComponent {
         this._isAuthenticated = true;
     }
 
-    isAuth(isAuth?: any) {
+    public isAuth(isAuth?: any): void {
         console.log(isAuth);
+        
         // if (isAuth) {
         //     this.user = this.authService.getUser()
         // }
     }
 
-    onLogout(): void {
+    public onLogout(): void {
         this._isAuthenticated = false;
     }
 

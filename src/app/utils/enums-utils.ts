@@ -1,3 +1,4 @@
+/* eslint-disable */
 export class EnumsUtils {
 
     public static getEnumValues(enumType: any): Array<number> {

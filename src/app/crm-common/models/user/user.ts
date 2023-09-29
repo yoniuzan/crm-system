@@ -1,9 +1,9 @@
 export class User {
-    id: number;
-    token: string;
-    username: string;
-    password: string;
-    firstname: string;
-    lastname: string;
-    isAuthenticated: boolean;
+    public id: number;
+    public token: string;
+    public username: string;
+    public password: string;
+    public firstname: string;
+    public lastname: string;
+    public isAuthenticated: boolean;
 }

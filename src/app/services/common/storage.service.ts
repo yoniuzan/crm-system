@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Injectable } from '@angular/core';
 import { Constants } from 'src/app/crm-common/constants/languages/contstans';
 
@@ -8,9 +9,7 @@ export class StorageService {
 
     private _data: any;
 
-    constructor() { }
-
-    public async set(key: string, data: string) {
+    public async set(key: string, data: string): Promise<void> {
         localStorage.setItem(key, data);
     }
 

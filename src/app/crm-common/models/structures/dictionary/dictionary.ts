@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { KeyValue } from './key-value';
 
 export class Dictionary<Tvalue> {
@@ -21,9 +22,9 @@ export class Dictionary<Tvalue> {
     }
 
     public getOrNull(key: number | string): Tvalue | null {
-        if (this._dict.hasOwnProperty(key))
+        if (Object.prototype.hasOwnProperty.call(this._dict, key))
             return this._dict[key];
-
+    
         return null;
     }
 
@@ -34,9 +35,9 @@ export class Dictionary<Tvalue> {
     }
 
     public get(key: number | string): Tvalue {
-        if (this._dict.hasOwnProperty(key))
+        if (Object.prototype.hasOwnProperty.call(this._dict, key))
             return this._dict[key];
-
+    
         throw new Error(`KeyNotFound: Could not find key(${key.toString()}} in dictionary`);
     }
 
@@ -96,12 +97,21 @@ export class Dictionary<Tvalue> {
         return this.keys().map(key => map(key, this.get(key)));
     }
 
-    public getObject(): any {
-        const dictObj: any = {};
+    // public getObject(): any {
+    //     const dictObj: any = {};
+    //     this.keys().forEach(key => {
+    //         dictObj[key] = this._dict[key];
+    //     });
+
+    //     return dictObj;
+    // }
+
+    public getObject(): Record<string, Tvalue> {
+        const dictObj: Record<string, Tvalue> = {};
         this.keys().forEach(key => {
             dictObj[key] = this._dict[key];
         });
-
+    
         return dictObj;
     }
 }

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
@@ -19,24 +20,24 @@ export class HttpService {
     }
 
     // imporved but chat gpt
-    public async get<T>(relativePath: string, data: any, convert: (da: any, ex?: any) => T = (data) => data) {
+    public async get<T>(relativePath: string, data: any, convert: (da: any, ex?: any) => T = (data) : any => data): Promise<any> {
         const { ...params } = data ?? {};
         const completePath = `${environment.Server}${relativePath}${this.getParams(params)}`;
 
         return this._http.get(completePath, { responseType: 'text' })
-        .pipe(
-          map((res) => {
-            const result = convert(res);
-            if (result === undefined) {
-              throw new Error(`Failed to convert response: ${JSON.stringify(res)}`);
-            }
-            return result;
-          }),
-          catchError((err) => {
-            throw new Error(`Request failed: ${err.message}`);
-          })
-        )
-        .toPromise();
+            .pipe(
+                map((res) => {
+                    const result = convert(res);
+                    if (result === undefined)
+                        throw new Error(`Failed to convert response: ${JSON.stringify(res)}`);
+                    
+                    return result;
+                }),
+                catchError((err) => {
+                    throw new Error(`Request failed: ${err.message}`);
+                })
+            )
+            .toPromise();
     }
 
     // public async get<T>(relativePath: string, data: any, convert: (da: any, ex?: any) => T) {
@@ -69,67 +70,44 @@ export class HttpService {
     //     }
     // }
 
-    public async getImage<T>(relativePath: string, data: any, convert: (da: any, ex?: any) => T) {
-
-        data = Object.keys(data).length == 0 ? {} : data;
-        convert = convert ?? function (data) {
+    public async getImage<T>(relativePath: string, data: any, convert: (da: any, ex?: any) => T): Promise<any> {
+        data = Object.keys(data).length === 0 ? {} : data;
+        convert = convert ?? function (data): any {
             return data;
         };
-
+    
         const completePath = `${environment.Server}${relativePath}${this.getParams(data)}`;
-
-        try {
-            return this._http.get(completePath, { responseType: 'text' })
-                .pipe(
-                    map((res: any) => {
-                        try {
-                            return convert(res);
-                        }
-                        catch (e) {
-                            throw e;
-                        }
-
-                    }),
-                    catchError((err: any) => {
-                        return err;
-
-                    }))
-                .toPromise();
-        } catch (e) {
-            throw e;
-        }
+        
+        return this._http.get(completePath, { responseType: 'text' })
+            .pipe(
+                map((res: any) => {
+                    return convert(res);
+                }),
+                catchError((err: any) => {
+                    return err;
+                })
+            )
+            .toPromise();
     }
 
-
-    async post<T>(relativePath: string, data: any, convert: (da: any) => T) {
-
-        data = Object.keys(data).length == 0 ? {} : data;
-        convert = convert ?? function (data) {
+    public async post<T>(relativePath: string, data: any, convert: (da: any) => T): Promise<any> {
+        data = Object.keys(data).length === 0 ? {} : data;
+        convert = convert ?? function (data): any {
             return data;
         };
-
+    
         const completePath = `${environment.Server}${relativePath}`;
         const body: string = JSON.stringify(data);
-
-        try {
-            return this._http.post(completePath, body)
-                .pipe(
-                    map((res: any) => {
-                        try {
-                            return convert(res);
-                        }
-                        catch (e) {
-                            throw e;
-                        }
-
-                    }),
-                    catchError((err: any) => {
-                        return err;
-
-                    }))
-                .toPromise();
-        } catch (e) {
-            throw e;
-        }
+    
+        return this._http.post(completePath, body)
+            .pipe(
+                map((res: any) => {
+                    return convert(res);
+                }),
+                catchError((err: any) => {
+                    return err;
+                })
+            )
+            .toPromise();
     }
 }

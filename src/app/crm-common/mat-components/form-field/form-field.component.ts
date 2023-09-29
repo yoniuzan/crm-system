@@ -1,5 +1,4 @@
 import { LanguageService } from 'src/app/services/common/language.service';
-import { Enums } from 'src/app/crm-common/enums';
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -8,8 +7,9 @@ import { MatInputModule } from '@angular/material/input';
 import { LanguagePipe } from 'src/app/pipes/language.pipe';
 import { TranslatePipe } from 'src/app/pipes/translate/translate.pipe';
 import { BaseComponent } from '../../components/base/base/base.component';
+import { FormFieldType } from '../../enums';
 
-export type CrmMatFormField = { label: string, placeholder: string, formControl: FormControl, type: Enums.FormFieldType }
+export type CrmMatFormField = { label: string, placeholder: string, formControl: FormControl, type: FormFieldType }
 
 @Component({
     selector: 'form-field',
@@ -20,7 +20,7 @@ export type CrmMatFormField = { label: string, placeholder: string, formControl:
 })
 export class FormFieldComponent extends BaseComponent {
 
-    @Input('crm-form-field') _crmFormField: CrmMatFormField;
+    @Input('crm-form-field') public _crmFormField: CrmMatFormField;
 
     constructor(private _languageService: LanguageService) {
         super();
@@ -28,12 +28,12 @@ export class FormFieldComponent extends BaseComponent {
 
     public getErrorMessage(): string {
         switch (this._crmFormField.type) {
-            case Enums.FormFieldType.Text:
+            case FormFieldType.Text:
                 return this.getErrorUserNameMessage();
-            case Enums.FormFieldType.Password:
+            case FormFieldType.Password:
                 return this.getErrorPasswordMessage();
             default:
-                return ''
+                return '';
         }
     }
 

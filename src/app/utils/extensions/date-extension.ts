@@ -23,6 +23,7 @@ Date.prototype.addDays = function (this: Date, days: number): Date {
 };
 
 Date.prototype.LanguageVersion = function (this: Date): string {
+    
     // if (!environment.production)
     //     return Date.now().toString();
     
@@ -31,6 +32,7 @@ Date.prototype.LanguageVersion = function (this: Date): string {
 };
 
 Date.prototype.ConfigVersion = function (this: Date): string {
+
     // if (!environment.production)
     //     return Date.now().toString();
 
@@ -53,13 +55,13 @@ Date.prototype.addMilliseconds = function (this: Date, miliSeconds: number): Dat
 };
 
 Date.prototype.dateToLeftConvert = function (this: Date, milliSecondsLeft: number): { days: number, hours: number, minutes: number, seconds: number } {
-    let d, h, m, s;
+    let h, m, s;
     s = Math.floor(milliSecondsLeft / 1000);
     m = Math.floor(s / 60);
     s = s % 60;
     h = Math.floor(m / 60);
     m = m % 60;
-    d = Math.floor(h / 24);
+    const d = Math.floor(h / 24);
     h = h % 24;
 
     return { days: d, hours: h, minutes: m, seconds: s };

@@ -1,0 +1,100 @@
+{
+    "root": true,
+    "ignorePatterns": [
+        "projects/**/*"
+    ],
+    "overrides": [
+        {
+            "files": [
+                "*.ts"
+            ],
+            "extends": [
+                "eslint:recommended",
+                "plugin:@typescript-eslint/recommended",
+                "plugin:@angular-eslint/recommended",
+                "plugin:@angular-eslint/template/process-inline-templates"
+            ],
+            "plugins": [
+                "@typescript-eslint",
+                "filenames"
+            ],
+            "rules": {
+                "@angular-eslint/no-output-on-prefix": "off",
+                "@angular-eslint/no-output-rename": "off",
+                "@angular-eslint/no-input-on-prefix": "off",
+                "@angular-eslint/no-input-rename": "off",
+                // "@typescript-eslint/no-explicit-any": "off"
+                "@typescript-eslint/explicit-function-return-type": [
+                    "error"
+                ],
+                "semi": [
+                    "warn",
+                    "always"
+                ],
+                "indent": [
+                    "error",
+                    4,
+                    {
+                        "SwitchCase": 1
+                    }
+                ],
+                "curly": [
+                    "warn",
+                    "multi-or-nest"
+                ],
+                "no-prototype-builtins": 0,
+                "@typescript-eslint/explicit-member-accessibility": [
+                    "warn",
+                    {
+                        "overrides": {
+                            "constructors": "off"
+                        }
+                    }
+                ],
+                "filenames/match-exported": [
+                    2,
+                    "kebab"
+                ],
+                "no-multiple-empty-lines": [
+                    "warn",
+                    {
+                        "max": 1,
+                        "maxBOF": 0,
+                        "maxEOF": 0
+                    }
+                ],
+                "newline-before-return": 1,
+                "lines-between-class-members": [
+                    1,
+                    "always",
+                    {
+                        "exceptAfterSingleLine": true
+                    }
+                ],
+                "lines-around-comment": [
+                    1,
+                    {
+                        "beforeBlockComment": true,
+                        "beforeLineComment": true
+                    }
+                ],
+                "space-before-blocks": [1, "always" ],
+                "padding-line-between-statements": [
+                    "warn",
+                    { "blankLine": "always", "prev": "block-like", "next": "block-like" },
+                    { "blankLine": "always", "prev": "block", "next": "*" },
+                    { "blankLine": "always", "prev": "multiline-expression", "next": "*" }
+                ]
+            }
+        },
+        {
+            "files": [
+                "*.html"
+            ],
+            "extends": [
+                "plugin:@angular-eslint/template/recommended"
+            ],
+            "rules": {}
+        }
+    ]
+}

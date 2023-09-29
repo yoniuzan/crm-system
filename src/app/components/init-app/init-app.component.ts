@@ -1,5 +1,5 @@
 import { LanguageService } from 'src/app/services/common/language.service';
-import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { Router, RouterLinkWithHref, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
@@ -23,21 +23,20 @@ import { Constants } from 'src/app/crm-common/constants/languages/contstans';
     templateUrl: './init-app.component.html',
     styleUrls: ['./init-app.component.scss']
 })
-export class InitAppComponent implements OnInit {
+export class InitAppComponent implements OnInit, OnDestroy {
     @ViewChild('sidenav') public sidenav: MatSidenav;
 
     @Output('on-logout') private _onLogout: EventEmitter<void> = new EventEmitter();
 
-
     public isMobile: boolean;
     public mode: FormControl = new FormControl('side');
-    public uiContent: string = "content"
+    public uiContent = "content";
     public user: User;
     public isRtl: boolean;
     public menuItems: MenuItem[] = [];
-    public isMenuOpen: boolean = true;
+    public isMenuOpen = true;
 
-    public isloading: boolean = true;
+    public isloading = true;
 
     constructor(private breakpointObserver: BreakpointObserver, private _languageService: LanguageService,  private router: Router) {
         this.isloading = true;
@@ -46,17 +45,17 @@ export class InitAppComponent implements OnInit {
         this.initModeSideMenu();
     }
 
-    private initMenu() {
+    private initMenu(): void {
         this.menuItems.push(
             new MenuItem('assessment', 'Menu.Dashboard', Constants.Routes.Dashboard),
             new MenuItem('shopping_cart', 'Menu.Orders', 'order'),
             new MenuItem('account_box', 'Menu.Customers', Constants.Routes.Customers),
             new MenuItem('store', 'Menu.Products', 'product'),
             new MenuItem('settings', 'Menu.Settings', Constants.Routes.Settings),
-        )
+        );
     }
 
-    private initModeSideMenu() {
+    private initModeSideMenu(): void {
         this.breakpointObserver.observe([
             Breakpoints.HandsetLandscape,
             Breakpoints.HandsetPortrait
@@ -72,7 +71,8 @@ export class InitAppComponent implements OnInit {
         this.uiContent = uiContent;
     }
 
-    ngOnInit(): void {
+    public ngOnInit(): void {
+        
         // this.user = this.authService.getUser();
         this.user = <User>JSON.parse(localStorage.getItem("NG_CRM_USER_2.0") || '{}');
         this.isloading = false;
@@ -83,15 +83,16 @@ export class InitAppComponent implements OnInit {
         this.sidenav.toggle();
     }
 
-    logout(): void {
+    public logout(): void {
         this._onLogout.emit();
+
         // this.authService.logout()
         // this.router.navigate([Constants.Routes.Login]); // TODO emit up
     }
 
-    ngOnDestroy() {
-        this.breakpointObserver.ngOnDestroy()
-        // this.authService.logout()
+    public ngOnDestroy(): void {
+        this.breakpointObserver.ngOnDestroy();
 
+        // this.authService.logout()
     }
 }
