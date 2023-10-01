@@ -22,12 +22,10 @@ export class AppComponent {
         this._isAuthenticated = true;
     }
 
-    public isAuth(isAuth?: any): void {
+    public isAuth(isAuth: boolean): void {
         console.log(isAuth);
+        this._isAuthenticated = isAuth;
         
-        // if (isAuth) {
-        //     this.user = this.authService.getUser()
-        // }
     }
 
     public onLogout(): void {

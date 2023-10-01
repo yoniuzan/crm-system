@@ -28,7 +28,9 @@ export class LangHe {
         Customers: 'לקוחות',
         Products: 'מוצרים',
         About: 'מידע',
-        Settings: 'הגדרות'
+        Settings: 'הגדרות',
+        Logout: 'התנתק/י',
+        ChangePassword: 'שנה/י סיסמה'
     };
 
     public static Settings = {

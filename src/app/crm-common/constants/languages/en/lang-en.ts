@@ -28,7 +28,9 @@ export class LangEn {
         Customers: 'Customers',
         Products: 'Products',
         About: 'About',
-        Settings: 'Settings'
+        Settings: 'Settings',
+        Logout: 'Logout',
+        ChangePassword: 'Change Password'
     };
 
     public static Settings = {
