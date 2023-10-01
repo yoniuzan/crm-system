@@ -37,7 +37,7 @@ export class LoginComponent extends BaseComponent {
         super();
         const lang = this._storageService.get(Constants.Cookies.Language);
         this._currentLanguage = lang ? Number(lang) : Language.Hebrew;
-        
+
         // this._currentLanguage = Language.English; //TODO delete this
         this.initUserLoginForm();
         this.onLanguageClick(this._currentLanguage);
@@ -63,9 +63,11 @@ export class LoginComponent extends BaseComponent {
 
     public login(): void {
         this._isValidating = true;
-        this._httpService.get('', {}, Convert.Get).then(res => {
-            console.log(res);
-        });
+
+        //TODO
+        // this._httpService.get('', {}, Convert.Get).then(res => {
+        //     console.log(res);
+        // });
          
         // this.authenticationService.login(this.model).subscribe(
         //     () => {
