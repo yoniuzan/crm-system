@@ -23,9 +23,7 @@ export class AppComponent {
     }
 
     public isAuth(isAuth: boolean): void {
-        console.log(isAuth);
         this._isAuthenticated = isAuth;
-        
     }
 
     public onLogout(): void {

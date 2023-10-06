@@ -1,3 +1,5 @@
+import { Language } from "../../enums";
+
 export class Constants {
 
     public static Cookies = {
@@ -18,4 +20,6 @@ export class Constants {
         Customers: 'customers',
         Settings: 'settings'
     };
+
+    public static RTLLanguage = [Language.Hebrew];
 }

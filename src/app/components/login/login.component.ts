@@ -16,13 +16,14 @@ import { BaseComponent } from 'src/app/crm-common/components/base/base/base.comp
 import { MatButtonModule } from '@angular/material/button';
 import { AuthService } from 'src/app/services/common/auth.service';
 import { EMPTY_STRING, NUMBER_ONE, NUMBER_SIX, NUMBER_TWO, NUMBER_ZERO } from 'src/app/crm-common/constants/generalConstants';
+import { PreloaderDialogComponent } from 'src/app/crm-common/components/dialog/preloader-dialog/preloader-dialog.component';
 
 @Component({
     selector: 'login',
     standalone: true,
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.scss'],
-    imports: [FormFieldComponent, TranslatePipe, CommonModule, RouterLinkWithHref, RouterOutlet, LanguagePipe, FormsModule, MatCardModule, MatButtonModule],
+    imports: [FormFieldComponent, TranslatePipe, CommonModule, RouterLinkWithHref, RouterOutlet, LanguagePipe, FormsModule, MatCardModule, MatButtonModule, PreloaderDialogComponent],
 })
 export class LoginComponent extends BaseComponent {
     @Output('is-authenticated') private _isAuthenticated: EventEmitter<boolean> = new EventEmitter();
@@ -82,6 +83,7 @@ export class LoginComponent extends BaseComponent {
             .catch((error) => {
                 this._isValidating = false;
                 this._loading = false; // Reset loading flag
+                console.log('Authentication failed with error');
                 console.error(error);
             });
     }
