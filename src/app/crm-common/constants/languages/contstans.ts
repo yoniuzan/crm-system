@@ -1,4 +1,4 @@
-import { Language } from "../../enums";
+import { Enums } from "../../enums";
 
 export class Constants {
 
@@ -21,5 +21,5 @@ export class Constants {
         Settings: 'settings'
     };
 
-    public static RTLLanguage = [Language.Hebrew];
+    public static RTLLanguage = [Enums.Language.Hebrew];
 }

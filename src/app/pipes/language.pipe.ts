@@ -1,5 +1,5 @@
+import { Enums } from 'src/app/crm-common/enums';
 import { Pipe, PipeTransform } from '@angular/core';
-import { Language } from '../crm-common/enums';
 import { LanguageService } from '../services/common/language.service';
 
 @Pipe({
@@ -11,13 +11,13 @@ export class LanguagePipe implements PipeTransform {
 
     }
 
-    public transform(value: Language): string {
+    public transform(value: Enums.Language): string {
         if (!value)
             return '';
         switch (value) {
-            case Language.English:
+            case Enums.Language.English:
                 return this._languageService.getStr('Languages.English');
-            case Language.Hebrew:
+            case Enums.Language.Hebrew:
                 return this._languageService.getStr('Languages.Hebrew');
    
             default:

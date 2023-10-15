@@ -11,11 +11,12 @@ import './app/utils/extensions/array-extension';
 import './app/utils/extensions/promise-extension';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { importProvidersFrom } from '@angular/core';
+import {MatDialogModule} from '@angular/material/dialog';
 
 bootstrapApplication(AppComponent, {
     providers: [
         provideRouter(routes, withPreloading(CustomPreloadingService)),
         provideHttpClient(withXsrfConfiguration({ cookieName: '', headerName: '' }), withJsonpSupport()),
-        importProvidersFrom(BrowserAnimationsModule)
+        importProvidersFrom(BrowserAnimationsModule, MatDialogModule)
     ]
 });

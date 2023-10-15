@@ -4,7 +4,6 @@ import { Component, EventEmitter, Output } from "@angular/core";
 import { FormControl, FormsModule, Validators } from "@angular/forms";
 import { RouterLinkWithHref, RouterOutlet } from "@angular/router";
 import { Constants } from "src/app/crm-common/constants/languages/contstans";
-import { FormFieldType, Language } from "src/app/crm-common/enums";
 import { LanguagePipe } from "src/app/pipes/language.pipe";
 import { TranslatePipe } from "src/app/pipes/translate/translate.pipe";
 import { LanguageService } from "src/app/services/common/language.service";
@@ -16,21 +15,23 @@ import { BaseComponent } from 'src/app/crm-common/components/base/base/base.comp
 import { MatButtonModule } from '@angular/material/button';
 import { AuthService } from 'src/app/services/common/auth.service';
 import { EMPTY_STRING, NUMBER_ONE, NUMBER_SIX, NUMBER_TWO, NUMBER_ZERO } from 'src/app/crm-common/constants/generalConstants';
-import { PreloaderDialogComponent } from 'src/app/crm-common/components/dialog/preloader-dialog/preloader-dialog.component';
+import { Enums } from 'src/app/crm-common/enums';
+import { LoaderComponent } from 'src/app/crm-common/components/loader/loader.component';
+import { DialogComponent } from 'src/app/crm-common/components/dialog/dialog/dialog.component';
 
 @Component({
     selector: 'login',
     standalone: true,
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.scss'],
-    imports: [FormFieldComponent, TranslatePipe, CommonModule, RouterLinkWithHref, RouterOutlet, LanguagePipe, FormsModule, MatCardModule, MatButtonModule, PreloaderDialogComponent],
+    imports: [FormFieldComponent, TranslatePipe, CommonModule, RouterLinkWithHref, RouterOutlet, LanguagePipe, FormsModule, MatCardModule, MatButtonModule, LoaderComponent, DialogComponent],
 })
 export class LoginComponent extends BaseComponent {
     @Output('is-authenticated') private _isAuthenticated: EventEmitter<boolean> = new EventEmitter();
 
-    public _currentLanguage: Language = Language.Hebrew;
+    public _currentLanguage: Enums.Language = Enums.Language.Hebrew;
     public _showLogin = true;
-    public _activeLanguages: Array<Language> = EnumsUtils.getEnumValues(Language);
+    public _activeLanguages: Array<Enums.Language> = EnumsUtils.getEnumValues(Enums.Language);
     public _userLoginForm: Array<CrmMatFormField> = [];
     public _isValidating = false;
     public _loading = false;
@@ -40,19 +41,19 @@ export class LoginComponent extends BaseComponent {
     constructor(private _languageService: LanguageService, private _storageService: StorageService, private _httpService: HttpService, private _authService: AuthService) {
         super();
         const lang = this._storageService.get(Constants.Cookies.Language);
-        this._currentLanguage = lang ? Number(lang) : Language.Hebrew;
+        this._currentLanguage = lang ? Number(lang) : Enums.Language.Hebrew;
         this.initUserLoginForm();
         this.onLanguageClick(this._currentLanguage);
     }
 
     private initUserLoginForm(): void {
         this._userLoginForm.push(
-            { label: 'Login.EnterUserName', placeholder: 'Login.UserName', formControl: new FormControl(EMPTY_STRING, [Validators.required, Validators.minLength(NUMBER_TWO)]), type: FormFieldType.Text },
-            { label: 'Login.EnterPassword', placeholder: 'Login.Password', formControl: new FormControl(EMPTY_STRING, [Validators.required, Validators.minLength(NUMBER_SIX)]), type: FormFieldType.Password }
+            { label: 'Login.EnterUserName', placeholder: 'Login.UserName', formControl: new FormControl(EMPTY_STRING, [Validators.required, Validators.minLength(NUMBER_TWO)]), type: Enums.FormFieldType.Text },
+            { label: 'Login.EnterPassword', placeholder: 'Login.Password', formControl: new FormControl(EMPTY_STRING, [Validators.required, Validators.minLength(NUMBER_SIX)]), type: Enums.FormFieldType.Password }
         );
     }
 
-    private onLanguageClick(language: Language): void {
+    private onLanguageClick(language: Enums.Language): void {
         this._languageService.setLang(language, true).then(() => {
             this._currentLanguage = language;
         });

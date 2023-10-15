@@ -7,9 +7,9 @@ import { MatInputModule } from '@angular/material/input';
 import { LanguagePipe } from 'src/app/pipes/language.pipe';
 import { TranslatePipe } from 'src/app/pipes/translate/translate.pipe';
 import { BaseComponent } from '../../components/base/base/base.component';
-import { FormFieldType } from '../../enums';
+import { Enums } from '../../enums';
 
-export type CrmMatFormField = { label: string, placeholder: string, formControl: FormControl, type: FormFieldType }
+export type CrmMatFormField = { label: string, placeholder: string, formControl: FormControl, type: Enums.FormFieldType }
 
 @Component({
     selector: 'form-field',
@@ -28,9 +28,9 @@ export class FormFieldComponent extends BaseComponent {
 
     public getErrorMessage(): string {
         switch (this._crmFormField.type) {
-            case FormFieldType.Text:
+            case Enums.FormFieldType.Text:
                 return this.getErrorUserNameMessage();
-            case FormFieldType.Password:
+            case Enums.FormFieldType.Password:
                 return this.getErrorPasswordMessage();
             default:
                 return '';

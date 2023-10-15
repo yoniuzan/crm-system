@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { HttpService } from './http.service';
-import { Language } from '../../crm-common/enums';
+import { Enums } from '../../crm-common/enums';
 import { LangEn } from '../../crm-common/constants/languages/en/lang-en';
 import { LangHe } from '../../crm-common/constants/languages/he/lang-he';
 import { DOCUMENT } from '@angular/common';
@@ -14,20 +14,20 @@ import { Injectable, Inject } from '@angular/core';
 export class LanguageService {
 
     private _source: any;
-    private _langs: Array<Language>;
+    private _langs: Array<Enums.Language>;
 
     private _isRtl: boolean;
-    private _lang: Language | undefined;
+    private _lang: Enums.Language | undefined;
 
     constructor(private _storageService: StorageService, @Inject(DOCUMENT) private document: Document, private _httpService: HttpService) {
         
         // set everything towards translations
         this._isRtl = false;
-        this._langs = [Language.English, Language.Hebrew];
+        this._langs = [Enums.Language.English, Enums.Language.Hebrew];
         this.setLang(this.getLang(), true);
     }
 
-    public getLang(): Language {
+    public getLang(): Enums.Language {
         if (this._lang)
             return this._lang;
 
@@ -40,36 +40,36 @@ export class LanguageService {
         return this.getDefaultLang();
     }
 
-    public getActiveLangs(): Array<Language> {
+    public getActiveLangs(): Array<Enums.Language> {
         return this._langs;
     }
 
     // noinspection JSMethodCanBeStatic
-    private getDefaultLang(): Language {
+    private getDefaultLang(): Enums.Language {
         
-        return Language.Hebrew;
+        return Enums.Language.Hebrew;
     }
 
-    private setLangFromLocal(lang: Language): void {
+    private setLangFromLocal(lang: Enums.Language): void {
         this._source = this.getLocalSource(lang);
     }
 
-    private getLocalSource(lang: Language): any {
+    private getLocalSource(lang: Enums.Language): any {
         switch (lang) {
-            case Language.English:
+            case Enums.Language.English:
                 return LangEn;
-            case Language.Hebrew:
+            case Enums.Language.Hebrew:
             default:
                 return LangHe;
         }
     }
 
-    public async setLang(lang: Language, isInitial?: boolean): Promise<boolean> {
+    public async setLang(lang: Enums.Language, isInitial?: boolean): Promise<boolean> {
         switch (lang) {
-            case Language.English:
+            case Enums.Language.English:
                 this._source = LangEn;
                 break;
-            case Language.Hebrew:
+            case Enums.Language.Hebrew:
             default:
                 this._source = LangHe;
                 break;
@@ -91,7 +91,7 @@ export class LanguageService {
         return true;
     }
 
-    public onChengeLang(lang: Language): void {
+    public onChengeLang(lang: Enums.Language): void {
         
         this._storageService.set(Constants.Cookies.Language, lang.toString());
         this.setDirectionCss();
@@ -119,7 +119,7 @@ export class LanguageService {
 
     private setDirectionCss(): void {
         const currentLang = this.getLang();
-        const rtlLangs = [Language.Hebrew];
+        const rtlLangs = [Enums.Language.Hebrew];
         if (rtlLangs.indexOf(currentLang) >= 0) {
             this.loadStyle('global-rtl.css');
             document.body.classList.remove('ltr');
@@ -195,7 +195,7 @@ export class LanguageService {
         return this.getStrFromSource(this._source, this._lang ?? this.getDefaultLang(), key, params);
     }
 
-    private getStrFromSource(source: any, sourceLang: Language, key: string, params?: object): string {
+    private getStrFromSource(source: any, sourceLang: Enums.Language, key: string, params?: object): string {
         if (!key)
             return '';
         let foundStr: string | null;
@@ -279,11 +279,11 @@ export class LanguageService {
     }
 
     // noinspection JSMethodCanBeStatic
-    public getLangName(lang: Language): string {
+    public getLangName(lang: Enums.Language): string {
         switch (lang) {
-            case Language.English:
+            case Enums.Language.English:
                 return 'en';
-            case Language.Hebrew:
+            case Enums.Language.Hebrew:
             default:
                 return 'he';
         }
@@ -320,11 +320,11 @@ export class LanguageService {
     //     });
     // }
 
-    public getLocalLang(lang: Language): string {
+    public getLocalLang(lang: Enums.Language): string {
         switch (lang) {
-            case Language.English:
+            case Enums.Language.English:
                 return this.getStr('Languages.English');
-            case Language.Hebrew:
+            case Enums.Language.Hebrew:
                 return this.getStr('Languages.Hebrew');
             default:
                 throw new Error(`invalid position: ${lang}`);
