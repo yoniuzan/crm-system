@@ -18,11 +18,11 @@ export class AuthService {
         this._isSuccessLogin = new Subject<boolean>();
     }
 
-    getIsSuccessLogin(): Observable<boolean> {
+    public getIsSuccessLogin(): Observable<boolean> {
         return this._isSuccessLogin.asObservable();
     }
 
-    onLogin(status: boolean): void {
+    private onLogin(status: boolean): void {
         return this._isSuccessLogin.next(status);
     }
 

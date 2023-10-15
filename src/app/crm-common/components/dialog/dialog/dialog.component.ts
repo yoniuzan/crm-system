@@ -15,12 +15,12 @@ export class DialogComponent implements OnInit {
     @Input('open-dialog') public _openDialog: boolean;
     @Input('dialog-type') public _dialogType: Enums.DialogType;
 
-    animal: string;
-    name: string;
+    public animal: string;
+    public name: string;
 
     constructor(public dialog: MatDialog) { }
 
-    ngOnInit(): void {
+    public ngOnInit(): void {
         if (this._openDialog)
             this.openDialog();
     }
@@ -35,7 +35,7 @@ export class DialogComponent implements OnInit {
         }
     }
 
-    private openAlert() {
+    private openAlert(): void {
         const dialogRef = this.dialog.open(AlertComponent, {
             width: '250px',
             data: { name: this.name, animal: this.animal }

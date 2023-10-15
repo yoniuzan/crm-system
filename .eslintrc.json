@@ -84,7 +84,8 @@
                     { "blankLine": "always", "prev": "block-like", "next": "block-like" },
                     { "blankLine": "always", "prev": "block", "next": "*" },
                     { "blankLine": "always", "prev": "multiline-expression", "next": "*" }
-                ]
+                ],
+                "@typescript-eslint/no-namespace": "off"
             }
         },
         {
