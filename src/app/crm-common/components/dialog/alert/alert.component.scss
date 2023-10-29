@@ -1,0 +1,196 @@
+$white: #fcfcfc;
+$gray: #cbcdd3;
+$dark: #777777;
+$error: #ef8d9c;
+$orange: #ffc39e;
+$success: #b0db7d;
+$secondary: #99dbb4;
+
+@import url("https://fonts.googleapis.com/css?family=Lato:400,700");
+
+$font: "Lato", sans-serif;
+
+@mixin box {
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    height: 100%;
+}
+
+@mixin alert-box {
+    .face {
+        width: 22%;
+        height: 22%;
+        background: $white;
+        border-radius: 50%;
+        border: 1px solid $dark;
+        top: 21%;
+        left: 37.5%;
+        z-index: 2;
+    }
+
+    .message {
+        text-align: center;
+        height: 22%;
+    }
+
+    .button-box {
+        cursor: pointer;
+        background: $white;
+        width: 50%;
+        height: 15%;
+        border-radius: 20px;
+        top: 73%;
+        left: 25%;
+        outline: 0;
+        border: none;
+        box-shadow: 2px 2px 10px rgba($dark, 0.5);
+        transition: all 0.5s ease-in-out;
+        &:hover {
+            background: darken($white, 5%);
+            transform: scale(1.05);
+            transition: all 0.3s ease-in-out;
+        }
+    }
+}
+
+#container {
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 5px 5px 20px rgba($gray, 10%);
+}
+
+h1 {
+    font-size: 0.9em;
+    font-weight: 100;
+    letter-spacing: 3px;
+    color: $white;
+    text-transform: uppercase;
+}
+
+.alert {
+    margin: 0;
+    font-weight: 700;
+    letter-spacing: 5px;
+}
+
+p {
+    font-size: 0.5em;
+    font-weight: 100;
+    color: darken($dark, 10%);
+    letter-spacing: 1px;
+}
+
+.success-box {
+    @include box;
+    @include alert-box;
+    background: linear-gradient(to bottom right, $success 40%, $secondary 100%);
+
+    .success-animation {
+        animation: bounce 1s ease-in infinite;
+    }
+
+    .green {
+        color: darken($secondary, 20%);
+    }
+
+    .happy {
+        border: 2px solid;
+        border-color: transparent $dark $dark transparent;
+        transform: rotate(45deg);
+    }
+}
+
+.error-box {
+    @include box;
+    @include alert-box;
+    background: linear-gradient(to bottom left, #ef8d9c 40%, #ffc39e 100%);
+
+    .error-animation {
+        animation: roll 3s ease-in-out infinite;
+    }
+
+    .red {
+        color: darken($error, 10%);
+    }
+
+    .sad {
+        top: 49%;
+        border: 2px solid;
+        border-color: $dark transparent transparent $dark;
+        transform: rotate(45deg);
+    }
+}
+
+.eye {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: $dark;
+    border-radius: 50%;
+    top: 40%;
+    left: 20%;
+}
+
+.right {
+    left: 68%;
+}
+
+.mouth {
+    position: absolute;
+    top: 43%;
+    left: 41%;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+}
+
+.scale {
+    animation: scale 1s ease-in infinite;
+}
+.move {
+    animation: move 3s ease-in-out infinite;
+}
+
+@keyframes bounce {
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes scale {
+    50% {
+        transform: scale(0.9);
+    }
+}
+
+@keyframes roll {
+    0% {
+        transform: rotate(0deg);
+        left: 25%;
+    }
+    50% {
+        left: 60%;
+        transform: rotate(168deg);
+    }
+    100% {
+        transform: rotate(0deg);
+        left: 25%;
+    }
+}
+
+@keyframes move {
+    0% {
+        left: 25%;
+    }
+    50% {
+        left: 60%;
+    }
+    100% {
+        left: 25%;
+    }
+}

@@ -36,4 +36,13 @@ export class LangHe {
     public static Settings = {
         SelectLang: 'אנא בחר/י שפה',
     };
+
+    public static Alert = {
+        ErrorTitle: 'שגיאה',
+        ErrorContect: 'אופס, משהו השתבש',
+        TryAgain: 'נסה/י שוב',
+        SuccessTitle: 'נהדר!',
+        SuccessContect: 'הכל עבר בהצלחה',
+        Ok: 'אוקי'
+    };
 }

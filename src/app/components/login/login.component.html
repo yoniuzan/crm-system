@@ -41,4 +41,4 @@
 <loader class="loader" *ngIf="_loading"></loader>
 
 <!-- Example to use alert component like a modal -->
-<!-- <dialog *ngIf="_loading" [open-dialog]="_loading" [dialog-type]="enums.DialogType.Alert"> </dialog> -->
+<dialog *ngIf="!_loading" [dialog-type]="enums.DialogType.Alert" [alert-data]="_alertData"> </dialog>

@@ -18,6 +18,7 @@ import { EMPTY_STRING, NUMBER_ONE, NUMBER_SIX, NUMBER_TWO, NUMBER_ZERO } from 's
 import { Enums } from 'src/app/crm-common/enums';
 import { LoaderComponent } from 'src/app/crm-common/components/loader/loader.component';
 import { DialogComponent } from 'src/app/crm-common/components/dialog/dialog/dialog.component';
+import { IAlertComponentInput } from 'src/app/crm-common/components/dialog/alert/alert.component';
 
 @Component({
     selector: 'login',
@@ -35,6 +36,7 @@ export class LoginComponent extends BaseComponent {
     public _userLoginForm: Array<CrmMatFormField> = [];
     public _isValidating = false;
     public _loading = false;
+    public _alertData: IAlertComponentInput;
     private _username = EMPTY_STRING;
     private _password = EMPTY_STRING;
 
@@ -71,21 +73,32 @@ export class LoginComponent extends BaseComponent {
         this._loading = true;
         this._authService.login(this._username, this._password)
             .then((isAuthenticated) => {
-                this._loading = false; // Reset loading flag
+                this._loading = false; 
                 if (isAuthenticated) {
+                    this.getSuccessAlertData();
                     const user = this._authService.getUserByUsername(this._username);
                     console.log('Logged in user:', user);
                     this._isAuthenticated.emit(true);
                 } else {
+                    this.getErrorAlertData();
                     console.log('Authentication failed');
                     this._isValidating = false;
                 }
             })
             .catch((error) => {
+                this.getErrorAlertData();
                 this._isValidating = false;
-                this._loading = false; // Reset loading flag
+                this._loading = false; 
                 console.log('Authentication failed with error');
                 console.error(error);
             });
+    }
+
+    private getSuccessAlertData(): void {
+        this._alertData = { Type: Enums.AlertType.Success, Message: { Title: 'Alert.SuccessTitle', Content: 'Alert.SuccessContect', AcceptButton: 'Alert.Ok' } };
+    }
+
+    private getErrorAlertData(): void {
+        this._alertData = { Type: Enums.AlertType.Error, Message: { Title: 'Alert.ErrorTitle', Content: 'Alert.ErrorContect', AcceptButton: 'Alert.TryAgain' } };
     }
 }
