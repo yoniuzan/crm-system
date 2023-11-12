@@ -10,6 +10,14 @@ export namespace Enums {
         Email = 3
     }
 
+    export enum FormFieldName {
+        UserName = 1,
+        Password = 2,
+        Email = 3,
+        FirstName = 4,
+        LastName = 5
+    }
+
     export enum DialogType {
         Alert = 1
     }

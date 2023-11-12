@@ -29,7 +29,7 @@
                 <h2>{{'Login.SignIn' | translate}}</h2>
             </mat-card-header>
 
-            <form-field *ngFor="let field of _userLoginForm" [crm-form-field]="field"></form-field>
+            <form-field *ngFor="let field of _userLoginForm" [form-field]="field"></form-field>
 
             <mat-card-actions class="login__main__card__action-item">
                 <button mat-raised-button [disabled]="_isValidating" (click)="login()">{{'Login.Login' | translate}} </button>
@@ -39,6 +39,3 @@
 </div>
 
 <loader class="loader" *ngIf="_loading"></loader>
-
-<!-- Example to use alert component like a modal -->
-<dialog *ngIf="!_loading" [dialog-type]="enums.DialogType.Alert" [alert-data]="_alertData"> </dialog>

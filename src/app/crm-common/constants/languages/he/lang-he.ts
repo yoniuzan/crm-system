@@ -6,7 +6,8 @@ export class LangHe {
         Password: 'סיסמה',
         EnterUserName: 'הכנס/י שם משתמש',
         EnterPassword: 'הכנס/י סיסמה',
-        Login: 'התחבר/י'
+        Login: 'התחבר/י',
+        ErrorLogin: 'שם משתמש או סיסמה שגויים',
     };
 
     public static Languages = {
@@ -38,7 +39,7 @@ export class LangHe {
     };
 
     public static Alert = {
-        ErrorTitle: 'שגיאה',
+        ErrorTitle: 'אופס',
         ErrorContect: 'אופס, משהו השתבש',
         TryAgain: 'נסה/י שוב',
         SuccessTitle: 'נהדר!',

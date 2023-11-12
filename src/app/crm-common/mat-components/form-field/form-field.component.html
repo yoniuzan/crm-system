@@ -1,7 +1,7 @@
 <mat-form-field appearance="fill" class="mat-form-field">
-    <mat-label>{{_crmFormField.label | translate}}</mat-label>
-    <input matInput [placeholder]="(_crmFormField.placeholder | translate)" [formControl]="_crmFormField.formControl" required>
-    <mat-error *ngIf="_crmFormField.formControl.invalid">
+    <mat-label>{{_formField.Label | translate}}</mat-label>
+    <input matInput [placeholder]="(_formField.Placeholder | translate)" [formControl]="_formField.FormControl" required>
+    <mat-error *ngIf="_formField.FormControl.invalid">
         {{getErrorMessage()}}
     </mat-error>
 </mat-form-field>

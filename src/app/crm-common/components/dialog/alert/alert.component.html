@@ -48,11 +48,19 @@
         </div>
         <div class="message">
             <h1 class="alert">{{alert.Message.Title | translate}}</h1>
-            <p>{{alert.Message.Content | translate}}
+            <!-- <p>{{alert.Message.Content | translate}} -->
         </div>
-        <button *ngIf="alert.Message.AcceptButton" class="button-box" [mat-dialog-close]="true">
-            <h1 [ngClass]="{'green':alert.Type === enums.AlertType.Success, 'red':alert.Type === enums.AlertType.Error}">
-                {{alert.Message.AcceptButton | translate}}</h1>
-        </button>
+
+        <div class="button-actions">
+            <button *ngIf="alert.Message.AcceptButton" class="button-box" [mat-dialog-close]="enums.AlertResponses.Yes">
+                <h1 [ngClass]="{'green':alert.Type === enums.AlertType.Success, 'red':alert.Type === enums.AlertType.Error}">
+                    {{alert.Message.AcceptButton | translate}}</h1>
+            </button>
+    
+            <button *ngIf="alert.Message.CancelButton" class="button-box" [mat-dialog-close]="enums.AlertResponses.No">
+                <h1 [ngClass]="{'green':alert.Type === enums.AlertType.Success, 'red':alert.Type === enums.AlertType.Error}">
+                    {{alert.Message.CancelButton | translate}}</h1>
+            </button>
+        </div>
     </div>
 </div>
