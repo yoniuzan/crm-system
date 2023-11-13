@@ -40,6 +40,7 @@
 
             &__item {
                 display: flex;
+                align-items: center;
                 padding: 14px;
 
                 text-decoration: auto;
@@ -47,12 +48,14 @@
                 cursor: pointer;
 
                 .mat-icon {
-                    margin-inline-end: 6px;
+                    margin-inline-end: 15px;
                 }
-            }
 
-            :hover {
-                background-color: gray;
+                &.active {
+                    background-color: #9c27b0;
+                    color: white;
+                    box-shadow: 0 4px 20px 0 rgba(0,0,0,.14), 0 7px 10px -5px rgba(156,39,176,.4);
+                }
             }
         }
 

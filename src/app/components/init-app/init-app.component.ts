@@ -47,11 +47,11 @@ export class InitAppComponent implements OnInit, OnDestroy {
 
     private initMenu(): void {
         this.menuItems.push(
-            new MenuItem('assessment', 'Menu.Dashboard', Constants.Routes.Dashboard),
-            new MenuItem('shopping_cart', 'Menu.Orders', 'order'),
-            new MenuItem('account_box', 'Menu.Customers', Constants.Routes.Customers),
-            new MenuItem('store', 'Menu.Products', 'product'),
-            new MenuItem('settings', 'Menu.Settings', Constants.Routes.Settings),
+            new MenuItem('assessment', 'Menu.Dashboard', Constants.Routes.Dashboard, true),
+            new MenuItem('shopping_cart', 'Menu.Orders', 'order', false),
+            new MenuItem('account_box', 'Menu.Customers', Constants.Routes.Customers, false),
+            new MenuItem('store', 'Menu.Products', 'product', false),
+            new MenuItem('settings', 'Menu.Settings', Constants.Routes.Settings, false),
         );
     }
 
@@ -76,6 +76,14 @@ export class InitAppComponent implements OnInit, OnDestroy {
         // this.user = this.authService.getUser();
         this.user = <User>JSON.parse(localStorage.getItem("NG_CRM_USER_2.0") || '{}');
         this.isloading = false;
+    }
+
+    public onSidenavManu(item:MenuItem) {
+        let currentItem = this.menuItems.firstOrNull((item) => item.IsActive);
+        if(currentItem)
+            currentItem.IsActive = false;
+
+        item.IsActive = true;
     }
 
     public onMenuItem(): void {

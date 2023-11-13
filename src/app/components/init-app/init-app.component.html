@@ -22,8 +22,8 @@
             </mat-card>
 
             <mat-nav-list class="app-container__sidenav-manu__list">
-                <a *ngFor="let item of menuItems" class="app-container__sidenav-manu__list__item"
-                    [routerLink]="[item.RouterLink]">
+                <a *ngFor="let item of menuItems" class="app-container__sidenav-manu__list__item" [ngClass]="{'active': item.IsActive}"
+                    [routerLink]="[item.RouterLink]" (click)="onSidenavManu(item)">
                     <mat-icon mat-list-icon>{{item.IconName}}</mat-icon>
                     <span mat-line>{{item.Text | translate}}</span>
                 </a>
