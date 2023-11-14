@@ -54,6 +54,7 @@ export class LangHe {
         Gender: 'מין',
         Man: 'גבר',
         Female: 'אישה',
-        Other: 'אחר'
+        Other: 'אחר',
+        Actions: 'פעולות'
     }
 }
