@@ -36,4 +36,14 @@ export class LangEn {
     public static Settings = {
         SelectLang: 'Select Language',
     };
+
+    public static Customers = {
+        FirstName: 'First Name',
+        LastName: 'Last Name',
+        Age: 'Age',
+        Gender: 'Gender',
+        Man: 'Man',
+        Female: 'Female',
+        Other: 'Other'
+    };
 }

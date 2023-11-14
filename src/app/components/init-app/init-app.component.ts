@@ -47,11 +47,11 @@ export class InitAppComponent implements OnInit, OnDestroy {
 
     private initMenu(): void {
         this.menuItems.push(
-            new MenuItem('assessment', 'Menu.Dashboard', Constants.Routes.Dashboard, true),
-            new MenuItem('shopping_cart', 'Menu.Orders', 'order', false),
-            new MenuItem('account_box', 'Menu.Customers', Constants.Routes.Customers, false),
-            new MenuItem('store', 'Menu.Products', 'product', false),
-            new MenuItem('settings', 'Menu.Settings', Constants.Routes.Settings, false),
+            new MenuItem('assessment', 'Menu.Dashboard', Constants.Routes.Dashboard, window.location.pathname === '/'),
+            new MenuItem('shopping_cart', 'Menu.Orders', Constants.Routes.Orders, window.location.pathname === '/orders'),
+            new MenuItem('account_box', 'Menu.Customers', Constants.Routes.Customers, window.location.pathname === '/customers'),
+            new MenuItem('store', 'Menu.Products', Constants.Routes.Products, window.location.pathname === '/products'),
+            new MenuItem('settings', 'Menu.Settings', Constants.Routes.Settings, window.location.pathname === '/settings'),
         );
     }
 

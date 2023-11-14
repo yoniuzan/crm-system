@@ -46,4 +46,14 @@ export class LangHe {
         SuccessContect: 'הכל עבר בהצלחה',
         Ok: 'אוקי'
     };
+
+    public static Customers = {
+        FirstName: 'שם פרטי',
+        LastName: 'שם משפחה',
+        Age: 'גיל',
+        Gender: 'מין',
+        Man: 'גבר',
+        Female: 'אישה',
+        Other: 'אחר'
+    }
 }

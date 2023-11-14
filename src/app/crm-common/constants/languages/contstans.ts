@@ -18,7 +18,9 @@ export class Constants {
         Dashboard: 'dashboard',
         Users: 'users',
         Customers: 'customers',
-        Settings: 'settings'
+        Settings: 'settings',
+        Products: 'products',
+        Orders: 'orders'
     };
 
     public static RTLLanguage = [Enums.Language.Hebrew];

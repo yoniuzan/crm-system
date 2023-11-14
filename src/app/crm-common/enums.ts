@@ -25,4 +25,6 @@ export namespace Enums {
     export enum AlertType { Success = 1, Warning = 2, Error = 3, Prompt = 4, PromptWithPrice = 5, Help = 6, Activation = 7, General }
 
     export enum AlertResponses { Yes = 1, No = 2, Other = 3, CloseWithoutAction = 4 }
+
+    export enum Gender { Man = 1, Female = 2, Other = 3 }
 }
