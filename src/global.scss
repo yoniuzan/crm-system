@@ -11,4 +11,8 @@ body {
     width: 100%;
     margin: 0;
     padding: 0;
+
+    .mdc-notched-outline.ng-tns-c35-2.mdc-notched-outline--no-label.ng-star-inserted.mdc-notched-outline--notched {
+        flex-direction: row-reverse;
+    }
 }

@@ -55,6 +55,14 @@ export class LangHe {
         Man: 'גבר',
         Female: 'אישה',
         Other: 'אחר',
-        Actions: 'פעולות'
+        Actions: 'פעולות',
+        Display: 'מראה לקוחות',
+        Of: 'מתוך',
+        To: 'עד',
+        NumberToShow: 'מספר לקוחות לתצוגה',
+        LastPage: 'עמוד אחרון',
+        Next: 'הבא',
+        Previous: 'הקודם',
+        FirstPage: 'עמוד ראשון' 
     }
 }
