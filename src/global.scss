@@ -15,4 +15,23 @@ body {
     .mdc-notched-outline.ng-tns-c35-2.mdc-notched-outline--no-label.ng-star-inserted.mdc-notched-outline--notched {
         flex-direction: row-reverse;
     }
+
+    thead {
+        width: 100%;
+
+        tr {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+
+    tbody.mdc-data-table__content {
+        width: 100%;
+
+        tr.mat-mdc-row.mdc-data-table__row.cdk-row.ng-star-inserted {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+        }
+    }
 }

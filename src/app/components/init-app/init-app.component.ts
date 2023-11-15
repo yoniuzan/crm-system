@@ -47,7 +47,7 @@ export class InitAppComponent implements OnInit, OnDestroy {
 
     private initMenu(): void {
         this.menuItems.push(
-            new MenuItem('assessment', 'Menu.Dashboard', Constants.Routes.Dashboard, window.location.pathname === '/'),
+            new MenuItem('assessment', 'Menu.Dashboard', Constants.Routes.Dashboard, window.location.pathname === '/dashboard'),
             new MenuItem('shopping_cart', 'Menu.Orders', Constants.Routes.Orders, window.location.pathname === '/orders'),
             new MenuItem('account_box', 'Menu.Customers', Constants.Routes.Customers, window.location.pathname === '/customers'),
             new MenuItem('store', 'Menu.Products', Constants.Routes.Products, window.location.pathname === '/products'),
@@ -82,6 +82,9 @@ export class InitAppComponent implements OnInit, OnDestroy {
         let currentItem = this.menuItems.firstOrNull((item) => item.IsActive);
         if(currentItem)
             currentItem.IsActive = false;
+        else {
+            
+        }
 
         item.IsActive = true;
     }

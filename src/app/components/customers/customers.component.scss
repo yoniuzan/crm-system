@@ -1,7 +1,27 @@
 table {
+    overflow: scroll;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
     width: 100%;
+
+  
 
     .th-ltr {
         text-align: right;
+        width: 100px;
+    }
+
+    th {
+        width: 100px;
+    }
+
+    td {
+        width: 100px;
     }
 }
+
+
+
+
