@@ -21,4 +21,4 @@ export const customers = [
     { Id: 18, FirstName: 'Argon', LastName: 'Hydrogen', Age: 21, Gender: Enums.Gender.Man },
     { Id: 19, FirstName: 'Potassium', LastName: 'Hydrogen', Age: 22, Gender: Enums.Gender.Female },
     { Id: 20, FirstName: 'Calcium', LastName: 'Hydrogen', Age: 18, Gender: Enums.Gender.Man },
-]
+];

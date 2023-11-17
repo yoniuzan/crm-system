@@ -15,6 +15,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MenuItem } from 'src/app/crm-common/models/menu/menu-item';
 import { TranslatePipe } from 'src/app/pipes/translate/translate.pipe';
 import { Constants } from 'src/app/crm-common/constants/languages/contstans';
+import { RoutePath } from 'src/app/crm-common/constants/generalConstants';
 
 @Component({
     selector: 'init-app',
@@ -43,15 +44,17 @@ export class InitAppComponent implements OnInit, OnDestroy {
         this.isRtl = this._languageService.isRtlLanguage();
         this.initMenu();
         this.initModeSideMenu();
+        if(window.location.pathname === '/')
+            this.navigateToDefaulte();
     }
 
     private initMenu(): void {
         this.menuItems.push(
-            new MenuItem('assessment', 'Menu.Dashboard', Constants.Routes.Dashboard, window.location.pathname === '/dashboard'),
-            new MenuItem('shopping_cart', 'Menu.Orders', Constants.Routes.Orders, window.location.pathname === '/orders'),
-            new MenuItem('account_box', 'Menu.Customers', Constants.Routes.Customers, window.location.pathname === '/customers'),
-            new MenuItem('store', 'Menu.Products', Constants.Routes.Products, window.location.pathname === '/products'),
-            new MenuItem('settings', 'Menu.Settings', Constants.Routes.Settings, window.location.pathname === '/settings'),
+            new MenuItem('assessment', 'Menu.Dashboard', Constants.Routes.Dashboard, window.location.pathname === RoutePath.Dashboard),
+            new MenuItem('shopping_cart', 'Menu.Orders', Constants.Routes.Orders, window.location.pathname === RoutePath.Orders),
+            new MenuItem('account_box', 'Menu.Customers', Constants.Routes.Customers, window.location.pathname === RoutePath.Customers),
+            new MenuItem('store', 'Menu.Products', Constants.Routes.Products, window.location.pathname === RoutePath.Products),
+            new MenuItem('settings', 'Menu.Settings', Constants.Routes.Settings, window.location.pathname === RoutePath.Settings),
         );
     }
 
@@ -71,6 +74,13 @@ export class InitAppComponent implements OnInit, OnDestroy {
         this.uiContent = uiContent;
     }
 
+    private navigateToDefaulte(): void {
+        const defaluteItem = this.menuItems[0];
+        defaluteItem.IsActive = true;
+        this.router.navigate([RoutePath.Dashboard]);
+
+    }
+
     public ngOnInit(): void {
         
         // this.user = this.authService.getUser();
@@ -78,14 +88,11 @@ export class InitAppComponent implements OnInit, OnDestroy {
         this.isloading = false;
     }
 
-    public onSidenavManu(item:MenuItem) {
-        let currentItem = this.menuItems.firstOrNull((item) => item.IsActive);
+    public onSidenavManu(item:MenuItem): void {
+        const currentItem = this.menuItems.firstOrNull((item) => item.IsActive);
         if(currentItem)
             currentItem.IsActive = false;
-        else {
-            
-        }
-
+        
         item.IsActive = true;
     }
 

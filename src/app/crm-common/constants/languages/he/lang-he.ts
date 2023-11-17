@@ -64,5 +64,5 @@ export class LangHe {
         Next: 'הבא',
         Previous: 'הקודם',
         FirstPage: 'עמוד ראשון' 
-    }
+    };
 }

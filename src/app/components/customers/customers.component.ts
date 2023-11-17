@@ -17,11 +17,11 @@ import { LanguageService } from 'src/app/services/common/language.service';
 })
 export class CustomersComponent implements OnInit, AfterViewInit {
 
-    displayedColumns: string[] = ['position', 'name', 'weight', 'symbol', 'delete'];
-    customers: Customer[] = customers;
-    dataSource = new MatTableDataSource<Customer>(this.customers);
+    public displayedColumns: string[] = ['position', 'name', 'weight', 'symbol', 'delete'];
+    private customers: Customer[] = customers;
+    public dataSource = new MatTableDataSource<Customer>(this.customers);
 
-    @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+    @ViewChild(MatPaginator, { static: true }) private paginator: MatPaginator;
 
     public isRtl: boolean;
 
@@ -29,7 +29,7 @@ export class CustomersComponent implements OnInit, AfterViewInit {
         this.isRtl = this._languageService.isRtlLanguage();
     }
 
-    ngOnInit() {
+    public ngOnInit(): void {
         this.paginator._intl.itemsPerPageLabel = this._languageService.getStr('Customers.NumberToShow');
         this.paginator._intl.lastPageLabel = this._languageService.getStr('Customers.LastPage');
         this.paginator._intl.nextPageLabel = this._languageService.getStr('Customers.Next');
@@ -37,30 +37,30 @@ export class CustomersComponent implements OnInit, AfterViewInit {
         this.paginator._intl.firstPageLabel = this._languageService.getStr('Customers.FirstPage');
     }
 
-    ngAfterViewInit() {
+    public ngAfterViewInit(): void {
         this.dataSource.paginator = this.paginator;
         this.paginator._intl.getRangeLabel = this.getRangeDisplayText;
     }
 
-    onCccc(customer: any) {
+    public onCccc(customer: Customer): void {
         console.log(customer);
         console.log(typeof customer);
 
     }
 
-    getRangeDisplayText = (page: number, pageSize: number, length: number) => {
+    private getRangeDisplayText = (page: number, pageSize: number, length: number): string => {
         const initialText = this._languageService.getStr('Customers.Display');
         const to = this._languageService.getStr('Customers.To');
         const of = this._languageService.getStr('Customers.Of');
-        if (length == 0 || pageSize == 0) {
+        if (length == 0 || pageSize == 0)
             return `${initialText} 0 ${of} ${length}`;
-        }
+
         length = Math.max(length, 0);
         const startIndex = page * pageSize;
         const endIndex = startIndex < length
             ? Math.min(startIndex + pageSize, length)
             : startIndex + pageSize;
+
         return `${initialText} ${startIndex + 1} ${to} ${endIndex} ${of} ${length}`; // customize this line
     };
 }
-

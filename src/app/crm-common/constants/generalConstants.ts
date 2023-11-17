@@ -15,3 +15,11 @@ export const FormControlError = {
     Required: 'required',
     Minlength: 'minlength'
 };
+
+export const RoutePath = {
+    Dashboard: '/dashboard',
+    Orders: '/orders',
+    Customers: '/customers',
+    Products: '/products',
+    Settings: '/settings',
+};

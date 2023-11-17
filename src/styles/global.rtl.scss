@@ -49,5 +49,13 @@ body {
     .mat-mdc-icon-button.mat-mdc-button-base {
         transform: scaleX(-1) !important;
     }
+
+    .mdc-notched-outline.ng-tns-c35-6.mdc-notched-outline--no-label.ng-star-inserted.mdc-notched-outline--notched {
+        flex-direction: row-reverse !important;
+    }
+
+    .mdc-notched-outline.ng-tns-c35-4.mdc-notched-outline--no-label.ng-star-inserted.mdc-notched-outline--notched {
+        flex-direction: row-reverse !important;
+    }
   }
 }
