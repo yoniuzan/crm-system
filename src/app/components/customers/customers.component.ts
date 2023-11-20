@@ -1,32 +1,41 @@
 import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatTableDataSource, MatTableDataSourcePaginator, MatTableModule } from '@angular/material/table';
 import { Customer } from 'src/app/crm-common/models/customer/customer';
 import { customers } from 'src/app/mock-data/customersMockData';
 import { GenderPipe } from 'src/app/pipes/gender.pipe';
 import { TranslatePipe } from 'src/app/pipes/translate/translate.pipe';
+import { CustomersService } from 'src/app/services/common/customers.service';
 import { LanguageService } from 'src/app/services/common/language.service';
+import { AddCustomerComponent } from './add-customer/add-customer.component';
 
 @Component({
     selector: 'app-customers',
     standalone: true,
-    imports: [MatPaginatorModule, MatTableModule, GenderPipe, TranslatePipe, CommonModule],
+    imports: [MatPaginatorModule, MatTableModule, GenderPipe, TranslatePipe, CommonModule, AddCustomerComponent],
     templateUrl: './customers.component.html',
     styleUrls: ['./customers.component.scss']
 })
 export class CustomersComponent implements OnInit, AfterViewInit {
 
-    public displayedColumns: string[] = ['position', 'name', 'weight', 'symbol', 'delete'];
+    public displayedColumns: string[] = ['firstName', 'lastName', 'email', 'gender', 'phoneNumber', 'actions'];
     private customers: Customer[] = customers;
-    public dataSource = new MatTableDataSource<Customer>(this.customers);
+    public dataSource: MatTableDataSource<Customer, MatTableDataSourcePaginator>;
 
     @ViewChild(MatPaginator, { static: true }) private paginator: MatPaginator;
 
     public isRtl: boolean;
 
-    constructor(private _languageService: LanguageService) {
+    constructor(private _languageService: LanguageService, private _customerService: CustomersService) {
         this.isRtl = this._languageService.isRtlLanguage();
+        this._customerService.getAllCustomers().then((customers: Customer[]) => {
+            if (isEmpty(customers))
+                return;
+
+            this.dataSource = new MatTableDataSource<Customer>(customers);
+        })
+
     }
 
     public ngOnInit(): void {
@@ -63,4 +72,6 @@ export class CustomersComponent implements OnInit, AfterViewInit {
 
         return `${initialText} ${startIndex + 1} ${to} ${endIndex} ${of} ${length}`; // customize this line
     };
+
+    
 }

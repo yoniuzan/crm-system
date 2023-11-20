@@ -1,0 +1,29 @@
+<div class="add-customer-form">
+    <div class="add-customer-form__section-one">
+        <mat-form-field>
+            <mat-label>First Name</mat-label>
+            <input matInput>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Last Name</mat-label>
+            <input matInput>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input matInput>
+        </mat-form-field>
+    </div>
+
+    <div class="add-customer-form__section-two">
+        <mat-form-field>
+            <mat-label>Phone Number</mat-label>
+            <input matInput>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Select</mat-label>
+            <mat-select [(ngModel)]="_genderSelect">
+                <mat-option *ngFor="let gender of _genderList" [value]="_genderSelect | gender">{{ gender | gender}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+</div>

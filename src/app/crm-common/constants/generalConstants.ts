@@ -10,6 +10,7 @@ export const NUMBER_SEVEN = 7;
 export const NUMBER_EIHGT = 8;
 
 export const AlertWidth = '250px';
+export const AddCustomerFormWidth = '650px';
 
 export const FormControlError = {
     Required: 'required',

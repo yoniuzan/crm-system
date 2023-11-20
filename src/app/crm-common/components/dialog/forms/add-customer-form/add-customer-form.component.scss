@@ -1,0 +1,33 @@
+$gray: #cbcdd3;
+@mixin section {
+    display: flex;
+    width: 100%;
+    padding: 10px;
+
+    mat-form-field {
+        margin: 0 10px;
+
+        ::placeholder {
+            text-align: center;
+        }
+    }
+}
+
+
+
+.add-customer-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 50px;
+    box-shadow: 5px 5px 20px rgba($gray, 10%);
+
+    &__section-one {
+        @include section;
+    }
+
+    &__section-two {
+        @include section;
+    }
+}

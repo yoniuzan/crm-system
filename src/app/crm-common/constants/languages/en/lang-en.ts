@@ -44,6 +44,7 @@ export class LangEn {
         Gender: 'Gender',
         Man: 'Man',
         Female: 'Female',
-        Other: 'Other'
+        Other: 'Other',
+        Email: 'Email'
     };
 }

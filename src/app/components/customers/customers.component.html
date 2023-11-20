@@ -1,35 +1,45 @@
 <div class="mat-elevation-z8">
+
+    <add-customer></add-customer>
+
     <table mat-table [dataSource]="dataSource">
 
         <!-- First Name Column -->
-        <ng-container matColumnDef="position">
+        <ng-container matColumnDef="firstName">
             <th mat-header-cell *matHeaderCellDef [ngClass]="{'th-ltr': isRtl}"> {{'Customers.FirstName' | translate}}
             </th>
             <td mat-cell *matCellDef="let element" [ngClass]="{'th-ltr': isRtl}"> {{element.FirstName}} </td>
         </ng-container>
 
         <!-- Last Name Column -->
-        <ng-container matColumnDef="name">
+        <ng-container matColumnDef="lastName">
             <th mat-header-cell *matHeaderCellDef [ngClass]="{'th-ltr': isRtl}"> {{'Customers.LastName' | translate}}
             </th>
             <td mat-cell *matCellDef="let element" [ngClass]="{'th-ltr': isRtl}"> {{element.LastName}} </td>
         </ng-container>
 
-        <!-- Age Column -->
-        <ng-container matColumnDef="weight">
-            <th mat-header-cell *matHeaderCellDef [ngClass]="{'th-ltr': isRtl}"> {{'Customers.Age' | translate}} </th>
-            <td mat-cell *matCellDef="let element" [ngClass]="{'th-ltr': isRtl}"> {{element.Age}} </td>
+        <!-- Email Column -->
+        <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef [ngClass]="{'th-ltr': isRtl}"> {{'Customers.Email' | translate}} </th>
+            <td mat-cell *matCellDef="let element" [ngClass]="{'th-ltr': isRtl}"> {{element.Email}} </td>
         </ng-container>
 
         <!-- Gender Column -->
-        <ng-container matColumnDef="symbol">
+        <ng-container matColumnDef="gender">
             <th mat-header-cell *matHeaderCellDef [ngClass]="{'th-ltr': isRtl}"> {{'Customers.Gender' | translate}}
             </th>
             <td mat-cell *matCellDef="let element" [ngClass]="{'th-ltr': isRtl}"> {{element.Gender | gender }} </td>
         </ng-container>
 
-        <!-- Gender Column -->
-        <ng-container matColumnDef="delete">
+        <!-- Phone Number Column -->
+        <ng-container matColumnDef="phoneNumber">
+            <th mat-header-cell *matHeaderCellDef [ngClass]="{'th-ltr': isRtl}"> {{'Customers.PhoneNumber' | translate}}
+            </th>
+            <td mat-cell *matCellDef="let element" [ngClass]="{'th-ltr': isRtl}"> {{element.PhoneNumber}} </td>
+        </ng-container>
+
+        <!-- Actions Column -->
+        <ng-container matColumnDef="actions">
             <th mat-header-cell *matHeaderCellDef [ngClass]="{'th-ltr': isRtl}"> {{'Customers.Actions' | translate}}
             </th>
             <td mat-cell *matCellDef="let element" [ngClass]="{'th-ltr': isRtl}" (click)="onCccc(element)"> {{'Delete'}}

@@ -63,6 +63,8 @@ export class LangHe {
         LastPage: 'עמוד אחרון',
         Next: 'הבא',
         Previous: 'הקודם',
-        FirstPage: 'עמוד ראשון' 
+        FirstPage: 'עמוד ראשון',
+        Email: 'אימייל',
+        PhoneNumber: 'טלפון'
     };
 }
