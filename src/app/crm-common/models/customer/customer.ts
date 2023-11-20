@@ -19,6 +19,4 @@ export class Customer {
         this.Gender = Enums.Gender.Man;
         this.PhoneNumber = '0';
     }
-
-
 }

@@ -22,5 +22,4 @@ export class AddCustomerFormComponent {
     public _genderSelect: Enums.Gender;
     public _newCustomer: Customer= new Customer();
 
-    constructor() {}
 }

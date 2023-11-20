@@ -34,8 +34,7 @@ export class CustomersComponent implements OnInit, AfterViewInit {
                 return;
 
             this.dataSource = new MatTableDataSource<Customer>(customers);
-        })
-
+        });
     }
 
     public ngOnInit(): void {
@@ -72,6 +71,4 @@ export class CustomersComponent implements OnInit, AfterViewInit {
 
         return `${initialText} ${startIndex + 1} ${to} ${endIndex} ${of} ${length}`; // customize this line
     };
-
-    
 }
